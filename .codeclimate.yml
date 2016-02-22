@@ -1,0 +1,15 @@
+engines:
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+    - "**.js"
+    - "**.es6"
+    - "**.html"
+    - "**.css"
+exclude_paths:
+  - "public/javascripts/**"

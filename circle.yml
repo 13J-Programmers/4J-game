@@ -1,0 +1,14 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+deployment:
+  publish:
+    branch: master
+    commands:
+      - source ./etc/deploy.sh
+machine:
+  node:
+    version: 5.6.0
+  pre:
+    - npm install -g npm
