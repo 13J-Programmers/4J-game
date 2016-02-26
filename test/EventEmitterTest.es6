@@ -63,7 +63,7 @@ describe('EventEmitter', () => {
 
         it('should emit the event to object\'s method', () => {
             const obj = new ObjectHasProp();
-            const func = obj.count.bind(obj);
+            const func = () => obj.count();
             emitter.on('eventname', func);
             emitter.emit('eventname');
 
@@ -101,7 +101,7 @@ describe('EventEmitter', () => {
 
         it('should remove listener on object', () => {
             const obj = new ObjectHasProp();
-            const func = obj.count.bind(obj);
+            const func = () => obj.count();
             emitter.on('eventname', func);
             emitter.removeListener('eventname', func);
             emitter.emit('eventname');
