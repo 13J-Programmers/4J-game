@@ -1,5 +1,9 @@
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 //
 // EventEmitter -- emit event for event-driven programming
 //
@@ -15,123 +19,75 @@
 //     sample.emit('sampleEvent', 123);
 //
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+// private functions
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+// object to test whether or not it is a function
+var _isFunction = function _isFunction(obj) {
+    return typeof obj == 'function' || false;
+};
 
 var EventEmitter = function () {
     function EventEmitter() {
         _classCallCheck(this, EventEmitter);
 
-        // All listeners is stored to _listeners.
-        // Listener is a callback function.
-        // Listeners are composed of some events (each event has Listeners array)
-        //
-        //     { eventName:
-        //         [ [Function], [Function], ... ],
-        //       eventName-onceSuffix:
-        //         [ [Function], [Function], ... ] }
-        //
-        this._listeners = {};
+        // All listeners is stored to listeners.
+        this.listeners = new Map();
     }
 
-    // the listener which is invoked only once is stored in
-    // _listeners[eventName + EventEmitter.listen_once_suffix]
+    // check if having listener
+    // return true or false
 
 
     _createClass(EventEmitter, [{
-        key: 'listeners',
-
-
-        // get listeners
-        //
-        // @return array which is specified event listeners
-        //
-        value: function listeners(eventName) {
-            return this._listeners[eventName] || [];
-        }
-
-        // check if having listener
-        //
-        // @param  eventName : event name
-        // @return true if it has event listeners
-        //
-
-    }, {
-        key: 'hasListener',
-        value: function hasListener(eventName) {
-            return typeof this._listeners[eventName] !== 'undefined' && this._listeners[eventName] !== null && this._listeners[eventName].length > 0;
+        key: 'has',
+        value: function has(eventName) {
+            return this.listeners.has(eventName);
         }
 
         // add event listener
-        //
-        // @param eventName : event name
-        // @param listener  : a function which is passed some arguments or no
-        //
 
     }, {
         key: 'addListener',
-        value: function addListener(eventName, listener) {
-            if (!this._listeners[eventName]) {
-                this._listeners[eventName] = [];
+        value: function addListener(eventName, callback) {
+            if (!this.listeners.has(eventName)) {
+                this.listeners.set(eventName, []);
             }
-            this._listeners[eventName].push(listener);
+            this.listeners.get(eventName).push(callback);
         }
 
-        // on event
         // alias for addListener
 
     }, {
         key: 'on',
-        value: function on(eventName, listener) {
-            this.addListener(eventName, listener);
+        value: function on(eventName, callback) {
+            this.addListener(eventName, callback);
         }
 
-        // do listener once on event
-        //
-        // @param eventName : event name
-        // @param listener  : a function which is passed some arguments or no
-        //
-
-    }, {
-        key: 'once',
-        value: function once(eventName, listener) {
-            this.addListener(eventName + EventEmitter.listen_once_suffix, listener);
-        }
-
-        // remove all listener from event
-        //
-        // @param eventName : event name
-        //
+        // remove listener from event
+        // returns true or false
 
     }, {
         key: 'removeListener',
-        value: function removeListener(eventName) {
-            var deleted = false;
+        value: function removeListener(eventName, callback) {
+            var listeners = this.listeners.get(eventName);
+            var index = undefined;
 
-            // eventName
-            if (this._listeners[eventName]) {
-                delete this._listeners[eventName];
-                deleted = true;
-            }
+            if (listeners && listeners.length) {
+                index = listeners.reduce(function (i, listener, index) {
+                    return _isFunction(listener) && listener === callback ? i = index : i;
+                }, -1);
 
-            // eventName-onceSuffix
-            var eventOnce = eventName + EventEmitter.listen_once_suffix;
-            if (this._listeners[eventOnce]) {
-                delete this._listeners[eventOnce];
-                deleted = true;
+                if (index > -1) {
+                    listeners.splice(index, 1);
+                    this.listeners.set(eventName, listeners);
+                    return true;
+                }
             }
-
-            if (!deleted) {
-                throw new Error('eventName "' + eventName + '" is not found');
-            }
+            return false;
         }
 
         // issue the event
-        //
-        // @param eventName : event name
-        // @param args      : pass to listeners
-        //
+        // return true or false
 
     }, {
         key: 'emit',
@@ -140,69 +96,15 @@ var EventEmitter = function () {
                 args[_key - 1] = arguments[_key];
             }
 
-            // eventName
-            if (this._listeners[eventName]) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
+            var listeners = this.listeners.get(eventName);
 
-                try {
-                    for (var _iterator = this._listeners[eventName][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var listener = _step.value;
-
-                        listener.apply(undefined, args);
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
+            if (listeners && listeners.length) {
+                listeners.forEach(function (listener) {
+                    listener.apply(undefined, args);
+                });
+                return true;
             }
-
-            // eventName-onceSuffix
-            var eventOnce = eventName + EventEmitter.listen_once_suffix;
-            if (this._listeners[eventOnce]) {
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    for (var _iterator2 = this._listeners[eventOnce][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var listener = _step2.value;
-
-                        listener.apply(undefined, args);
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-
-                delete this._listeners[eventOnce];
-            }
-        }
-    }], [{
-        key: 'listen_once_suffix',
-        get: function get() {
-            return '-once';
+            return false;
         }
     }]);
 

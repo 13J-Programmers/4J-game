@@ -1,4 +1,3 @@
-'use strict';
 
 //
 // EventEmitter -- emit event for event-driven programming
@@ -14,120 +13,76 @@
 //     });
 //     sample.emit('sampleEvent', 123);
 //
+
+// private functions
+
+// object to test whether or not it is a function
+const _isFunction = (obj) => {
+    return typeof obj == 'function' || false;
+};
+
 class EventEmitter {
     constructor() {
-        // All listeners is stored to _listeners.
-        // Listener is a callback function.
-        // Listeners are composed of some events (each event has Listeners array)
-        //
-        //     { eventName:
-        //         [ [Function], [Function], ... ],
-        //       eventName-onceSuffix:
-        //         [ [Function], [Function], ... ] }
-        //
-        this._listeners = {};
-    }
-
-    // the listener which is invoked only once is stored in
-    // _listeners[eventName + EventEmitter.listen_once_suffix]
-    static get listen_once_suffix() {
-        return '-once';
-    }
-
-    // get listeners
-    //
-    // @return array which is specified event listeners
-    //
-    listeners(eventName) {
-        return this._listeners[eventName] || [];
+        // All listeners is stored to listeners.
+        this.listeners = new Map();
     }
 
     // check if having listener
-    //
-    // @param  eventName : event name
-    // @return true if it has event listeners
-    //
-    hasListener(eventName) {
-        return typeof this._listeners[eventName] !== 'undefined' &&
-            this._listeners[eventName] !== null &&
-            this._listeners[eventName].length > 0;
+    // return true or false
+    has(eventName) {
+        return this.listeners.has(eventName);
     }
 
     // add event listener
-    //
-    // @param eventName : event name
-    // @param listener  : a function which is passed some arguments or no
-    //
-    addListener(eventName, listener) {
-        if (!this._listeners[eventName]) {
-            this._listeners[eventName] = [];
+    addListener(eventName, callback) {
+        if (!this.listeners.has(eventName)) {
+            this.listeners.set(eventName, []);
         }
-        this._listeners[eventName].push(listener);
+        this.listeners.get(eventName).push(callback);
     }
 
-    // on event
     // alias for addListener
-    on(eventName, listener) {
-        this.addListener(eventName, listener);
+    on(eventName, callback) {
+        this.addListener(eventName, callback);
     }
 
-    // do listener once on event
-    //
-    // @param eventName : event name
-    // @param listener  : a function which is passed some arguments or no
-    //
-    once(eventName, listener) {
-        this.addListener(eventName + EventEmitter.listen_once_suffix, listener);
-    }
+    // remove listener from event
+    // returns true or false
+    removeListener(eventName, callback) {
+        let listeners = this.listeners.get(eventName);
+        let index;
 
-    // remove all listener from event
-    //
-    // @param eventName : event name
-    //
-    removeListener(eventName) {
-        let deleted = false;
+        if (listeners && listeners.length) {
+            index = listeners.reduce((i, listener, index) => {
+                return (_isFunction(listener) && listener === callback) ?
+                    i = index :
+                    i;
+            }, -1);
 
-        // eventName
-        if (this._listeners[eventName]) {
-            delete this._listeners[eventName];
-            deleted = true;
+            if (index > -1) {
+                listeners.splice(index, 1);
+                this.listeners.set(eventName, listeners);
+                return true;
+            }
         }
-
-        // eventName-onceSuffix
-        const eventOnce = eventName + EventEmitter.listen_once_suffix;
-        if (this._listeners[eventOnce]) {
-            delete this._listeners[eventOnce];
-            deleted = true;
-        }
-
-        if (!deleted) {
-            throw new Error(`eventName "${eventName}" is not found`);
-        }
+        return false;
     }
 
     // issue the event
-    //
-    // @param eventName : event name
-    // @param args      : pass to listeners
-    //
+    // return true or false
     emit(eventName, ...args) {
-        // eventName
-        if (this._listeners[eventName]) {
-            for (let listener of this._listeners[eventName]) {
-                listener(...args);
-            }
-        }
+        let listeners = this.listeners.get(eventName);
 
-        // eventName-onceSuffix
-        const eventOnce = eventName + EventEmitter.listen_once_suffix;
-        if (this._listeners[eventOnce]) {
-            for (let listener of this._listeners[eventOnce]) {
+        if (listeners && listeners.length) {
+            listeners.forEach((listener) => {
                 listener(...args);
-            }
-            delete this._listeners[eventOnce];
+            });
+            return true;
         }
+        return false;
     }
 }
+
 
 try {
     window.EventEmitter = EventEmitter;
