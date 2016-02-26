@@ -11,13 +11,14 @@ window.game.MonoBehavior = function () {
 
         _classCallCheck(this, MonoBehavior);
 
-        this.mainGaim = game.Game.instance;
-        this.mainGaim.on('start', function () {
+        this._mainGaim = game.Game.instance;
+        this._mainGaim.on('start', function () {
             return _this.start();
         });
-        this.mainGaim.on('update', function () {
+        this._updateProcess = function () {
             return _this.update();
-        });
+        };
+        this._mainGaim.on('update', this._updateProcess);
     }
 
     _createClass(MonoBehavior, [{
@@ -29,6 +30,11 @@ window.game.MonoBehavior = function () {
         key: 'update',
         value: function update() {
             //
+        }
+    }, {
+        key: 'destructor',
+        value: function destructor() {
+            this._mainGaim.removeListener('update', this._updateProcess);
         }
     }]);
 
