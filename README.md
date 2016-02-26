@@ -27,12 +27,18 @@ TODO
 - [ ] 三次元モデルの作成
     - または代替となるオブジェクトの描画の検討
 - [x] プログラムの設計
-- [ ] クラス間の連携の枠組み（GameクラスとMonoBehaviorクラス）の作成
+- [ ] クラス間の連携の枠組み
+    - [x] GameクラスとMonoBehaviorクラスの作成
+    - [ ] GameクラスのSingleton化について再考
     - [x] ゲーム初期化時に全MonoBehaviorのstart()を実行する
     - [x] render()周りの骨組み（イベント駆動で全MonoBehaviorのupdate()メソッドをrender()から呼ぶ）
     - [x] MonoBehavior#constructor()がstart()とupdate()をGameのイベントハンドラに登録する
-    - [ ] テストの追加
-    - [ ] イベントハンドラに登録されたupdate()を持つインスタンスが削除された時の振る舞いの確認
+    - [x] MonoBehaviorクラスにイベントハンドラを削除するdestructorメソッドの追加
+    - [ ] SceneのRender処理方法の再考
+        - `sceneName.add(objectWillBeRendered)` のような形にする
+    - [ ] GameManagerの作成
+    - [ ] FieldGeneratorの作成
+    - [ ] PlayerとControllerの作成
 - [ ] プレイヤーの操作
     - [ ] キーボードによる操作
     - [ ] LeapMotionによる操作
