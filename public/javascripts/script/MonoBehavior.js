@@ -11,16 +11,21 @@ window.game.MonoBehavior = function () {
 
         _classCallCheck(this, MonoBehavior);
 
-        new game.Game().on('start', function () {
+        new game.Game().addListener('start', function () {
             return _this.start();
         });
         this._updateProcess = function () {
             return _this.update();
         };
-        new game.Game().on('update', this._updateProcess);
+        new game.Game().addListener('update', this._updateProcess);
     }
 
     _createClass(MonoBehavior, [{
+        key: 'setOn',
+        value: function setOn(gameScene) {
+            this.gameScene = gameScene;
+        }
+    }, {
         key: 'start',
         value: function start() {
             //

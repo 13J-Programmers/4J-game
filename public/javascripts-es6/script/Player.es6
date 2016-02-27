@@ -3,9 +3,9 @@ window.game = window.game || {}
 window.game.Player =
 
 class Player extends game.MonoBehavior {
-    constructor({ on: gameScene }) {
+    constructor() {
         super();
-        this.gameScene = gameScene;
+        this.gameScene = {};
         this.objects = {};
         this.theta = 0;
     }

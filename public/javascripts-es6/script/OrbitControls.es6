@@ -3,9 +3,9 @@ window.game = window.game || {}
 window.game.OrbitControls =
 
 class OrbitControls extends game.MonoBehavior {
-    constructor({ on: gameScene }) {
+    constructor() {
         super();
-        this.gameScene = gameScene;
+        this.gameScene = {};
     }
 
     start() {

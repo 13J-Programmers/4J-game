@@ -15,8 +15,9 @@ document.body.appendChild(renderer.domElement);
 // init gameScene
 var gameScene = new game.GameScene(scene, camera, renderer);
 
-new game.Player({ on: gameScene });
-new game.OrbitControls({ on: gameScene });
+new game.Player().setOn(gameScene);
+new game.OrbitControls().setOn(gameScene);
 
-new game.Game().setScene(gameScene);
-new game.Game().start();
+var main = new game.Game();
+main.set(gameScene);
+main.start();

@@ -25,7 +25,7 @@
             _instance = newInstance;
         }
 
-        setScene(gameScene) {
+        set(gameScene) {
             this.gameScene = gameScene;
         }
 

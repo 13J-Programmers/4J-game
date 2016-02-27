@@ -35,8 +35,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         _createClass(Game, [{
-            key: 'setScene',
-            value: function setScene(gameScene) {
+            key: 'set',
+            value: function set(gameScene) {
                 this.gameScene = gameScene;
             }
         }, {
