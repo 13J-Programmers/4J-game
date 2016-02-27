@@ -1,36 +1,45 @@
 
-// Singleton
-var instance = null;
+(() => {
+    // Singleton
+    var _instance;
 
-window.game = window.game || {};
-window.game.Game =
+    window.game = window.game || {};
+    window.game.Game =
 
-class Game extends EventEmitter {
-    constructor() {
-        super();
-    }
+    class Game extends EventEmitter {
+        constructor() {
+            super();
 
-    setScene(gameScene) {
-        this.gameScene = gameScene;
-    }
-
-    static get instance() {
-        if (!instance) {
-            instance = new Game();
+            if (typeof Game.instance === 'object') {
+                return Game.instance;
+            }
+            Game.instance = this;
+            return Game.instance;
         }
-        return instance;
-    }
 
-    start() {
-        this.emit('start');
-        this.render();
-    }
+        static get instance() {
+            return _instance;
+        }
 
-    // rendering
-    render() {
-        this.emit('update');
+        static set instance(newInstance) {
+            _instance = newInstance;
+        }
 
-        requestAnimationFrame(() => this.render()); // continually invoke this
-        this.gameScene.renderer.render(this.gameScene.scene, this.gameScene.camera); // render scene
+        setScene(gameScene) {
+            this.gameScene = gameScene;
+        }
+
+        start() {
+            this.emit('start');
+            this.render();
+        }
+
+        // rendering
+        render() {
+            this.emit('update');
+
+            requestAnimationFrame(() => this.render()); // continually invoke this
+            this.gameScene.renderer.render(this.gameScene.scene, this.gameScene.camera); // render scene
+        }
     }
-}
+})();
