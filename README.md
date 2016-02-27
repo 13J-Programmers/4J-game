@@ -29,13 +29,19 @@ TODO
 - [x] プログラムの設計
 - [ ] クラス間の連携の枠組み
     - [x] GameクラスとMonoBehaviorクラスの作成
-    - [ ] GameクラスのSingleton化について再考
+    - [x] GameクラスのSingleton化
+        - `new Game()` は常に同じインスタンスを返す
+        - クロージャによって、インスタンスを保存するフィールドをプライベートにする
+    - [x] SceneのRender処理方法
+        - MonoBehaviorのstart()とupdate()は、Gameのstartイベントとupdateイベントにハンドラとして登録される
+        - MonoBehaviorは、画面描画に関する情報を持つGameSceneのインスタンスgameSceneをフィールドとして持っている
+        - GameSceneへの設定方法は `new ObjectWillBeRendered().setOn(sceneName)` にする
+        - MonoBehaviorのstart()やupdate()内に、gameSceneの内容を操作する処理を加えて画面描画に動きを加える
+    - [x] MonoBehavior#constructor()がstart()とupdate()をGameのイベントハンドラに登録する
+    - [x] MonoBehavior#destructor()は登録されたイベントハンドラを削除する
+    - [x] MonoBehavior#setOn()は、自身の描画を行うSceneを設定する
     - [x] ゲーム初期化時に全MonoBehaviorのstart()を実行する
     - [x] render()周りの骨組み（イベント駆動で全MonoBehaviorのupdate()メソッドをrender()から呼ぶ）
-    - [x] MonoBehavior#constructor()がstart()とupdate()をGameのイベントハンドラに登録する
-    - [x] MonoBehaviorクラスにイベントハンドラを削除するdestructorメソッドの追加
-    - [ ] SceneのRender処理方法の再考
-        - `sceneName.add(objectWillBeRendered)` のような形にする
     - [ ] GameManagerの作成
     - [ ] FieldGeneratorの作成
     - [ ] PlayerとControllerの作成
