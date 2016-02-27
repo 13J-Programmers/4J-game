@@ -3,45 +3,23 @@ window.game = window.game || {}
 window.game.GameScene =
 
 class GameScene {
-    constructor() {
-        // init scene
-        this._scene = new THREE.Scene();
+    constructor(scene, camera, renderer) {
+        this.scene = scene;
+        this.camera = camera;
+        this.renderer = renderer;
 
-        // init camera
-        this._camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-        this._camera.position.z = 200;
-
-        // init render
-        this._renderer = new THREE.WebGLRenderer();
-        this._renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(this._renderer.domElement);
-
-        this.generateLights();
-        this.generateGameObjects();
-    }
-
-    get scene() {
-        return this._scene;
-    }
-
-    get camera() {
-        return this._camera;
-    }
-
-    get renderer() {
-        return this._renderer;
-    }
-
-    generateLights() {
-        // init light
+        // --- lights ---
+        // this.lights = {};
         const light = new THREE.DirectionalLight(0xffffff);
         light.position.set(0, 2, 1);
         this.scene.add(light);
-    }
 
-    generateGameObjects() {
+        // --- game objects ---
+
         // init objects
         this.objects = {};
+        this.addedObjects = [];
+
         let geometry, material;
 
         // ground
