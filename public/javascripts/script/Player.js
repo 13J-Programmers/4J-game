@@ -12,12 +12,13 @@ window.game = window.game || {};
 window.game.Player = function (_game$MonoBehavior) {
     _inherits(Player, _game$MonoBehavior);
 
-    function Player(gameScene) {
+    function Player() {
         _classCallCheck(this, Player);
 
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Player).call(this));
 
-        _this.gameScene = gameScene;
+        _this.gameScene = {};
+        _this.objects = {};
         _this.theta = 0;
         return _this;
     }
@@ -25,10 +26,10 @@ window.game.Player = function (_game$MonoBehavior) {
     _createClass(Player, [{
         key: "start",
         value: function start() {
-            // init objects
-            this.objects = {};
             var geometry = undefined,
                 material = undefined;
+
+            // init objects
 
             // player
             this.objects.player = new THREE.Object3D();

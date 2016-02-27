@@ -3,16 +3,17 @@ window.game = window.game || {}
 window.game.Player =
 
 class Player extends game.MonoBehavior {
-    constructor(gameScene) {
+    constructor() {
         super();
-        this.gameScene = gameScene;
+        this.gameScene = {};
+        this.objects = {};
         this.theta = 0;
     }
 
     start() {
-        // init objects
-        this.objects = {};
         let geometry, material;
+
+        // init objects
 
         // player
         this.objects.player = new THREE.Object3D();

@@ -4,10 +4,13 @@ window.game.MonoBehavior =
 
 class MonoBehavior {
     constructor() {
-        this._mainGaim = game.Game.instance;
-        this._mainGaim.on('start', () => this.start());
+        new game.Game().addListener('start', () => this.start());
         this._updateProcess = () => this.update();
-        this._mainGaim.on('update', this._updateProcess);
+        new game.Game().addListener('update', this._updateProcess);
+    }
+
+    setOn(gameScene) {
+        this.gameScene = gameScene;
     }
 
     start() {
@@ -19,6 +22,6 @@ class MonoBehavior {
     }
 
     destructor() {
-        this._mainGaim.removeListener('update', this._updateProcess);
+        new game.Game().removeListener('update', this._updateProcess);
     }
 }
