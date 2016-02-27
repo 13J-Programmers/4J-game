@@ -12,7 +12,9 @@ window.game = window.game || {};
 window.game.OrbitControls = function (_game$MonoBehavior) {
     _inherits(OrbitControls, _game$MonoBehavior);
 
-    function OrbitControls(gameScene) {
+    function OrbitControls(_ref) {
+        var gameScene = _ref.on;
+
         _classCallCheck(this, OrbitControls);
 
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(OrbitControls).call(this));
