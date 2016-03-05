@@ -1,4 +1,27 @@
 
+//
+// MonoBehavior -- all game objects behaviour is defined
+//
+// MonoBehavior is the base class which all game objects derives from.
+//
+// Usage:
+//
+//   class Player extends MonoBehavior {
+//     constructor() {
+//       super();
+//     }
+//
+//     start() {
+//       // invoked once before invoked update method
+//       // ...
+//     }
+//
+//     update() {
+//       // invoked per frame
+//       // ...
+//     }
+//   }
+//
 window.game = window.game || {}
 window.game.MonoBehavior =
 
