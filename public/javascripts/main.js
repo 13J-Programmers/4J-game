@@ -17,6 +17,6 @@ const gameScene = new game.GameScene(scene, camera, renderer);
 new game.Player().setOn(gameScene);
 new game.OrbitControls().setOn(gameScene);
 
-const main = new game.Game();
-main.set(gameScene);
-main.start();
+const mainProcess = new game.Game();
+mainProcess.set(gameScene);
+mainProcess.start();
