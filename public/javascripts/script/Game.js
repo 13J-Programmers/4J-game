@@ -1,4 +1,14 @@
 
+//
+// Game -- game process manager
+//
+// Usage:
+//
+//   const mainProcess = new game.Game();
+//   mainProcess.set(new game.GameScene(...));
+//   mainProcess.start();
+//
+
 (() => {
     // Singleton
     var _instance;
@@ -38,8 +48,13 @@
         render() {
             this.emit('update');
 
-            requestAnimationFrame(() => this.render()); // continually invoke this
-            this.gameScene.renderer.render(this.gameScene.scene, this.gameScene.camera); // render scene
+            // continually invoke this
+            requestAnimationFrame(() => this.render());
+            // render scene
+            this.gameScene.renderer.render(
+                this.gameScene.scene,
+                this.gameScene.camera
+            );
         }
     }
 })();
