@@ -34,6 +34,7 @@ class MonoBehavior {
 
     setOn(gameScene) {
         this.gameScene = gameScene;
+        return this;
     }
 
     start() {
