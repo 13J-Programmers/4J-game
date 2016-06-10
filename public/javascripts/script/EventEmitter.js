@@ -18,7 +18,7 @@
 
 // object to test whether or not it is a function
 const _isFunction = (obj) => {
-    return typeof obj == 'function' || false;
+    return typeof obj == 'function';
 };
 
 class EventEmitter {
@@ -83,15 +83,9 @@ class EventEmitter {
     }
 }
 
-
-try {
-    window.EventEmitter = EventEmitter;
-} catch (e) {
-    // suppress error on mocha
-}
-
-try {
-    module.exports.EventEmitter = EventEmitter;
-} catch (e) {
-    // suppress error on browser
+// export
+if (typeof window !== 'undefined') {
+  window.EventEmitter = EventEmitter;
+} else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  module.exports.EventEmitter = EventEmitter;
 }
