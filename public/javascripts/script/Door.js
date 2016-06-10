@@ -49,8 +49,11 @@ class Door extends game.MonoBehavior {
     update() {
         if (!this.isOpening) return;
         if (this.type === 0) {
+            if (this.objects.door.position.x <= -50) {
+                this.isOpening = false;
+                return;
+            }
             this.objects.door.position.x -= 5;
-            if (this.objects.door.position.x <= -50) this.isOpening = false;
         }
     }
 
