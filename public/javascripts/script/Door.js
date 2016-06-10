@@ -17,7 +17,6 @@ class Door extends game.MonoBehavior {
         switch (this.type) {
             case 0:  this.image_url = "/images/game/sliding-door-left.jpg";  break;
             case 1:  this.image_url = "/images/game/sliding-door-right.jpg"; break;
-            case 2:  this.image_url = "/images/game/sliding-door.jpg";       break;
             default: this.image_url = "";
         }
 
@@ -26,6 +25,13 @@ class Door extends game.MonoBehavior {
     }
 
     start() {
+        // hierarchy
+        //
+        // gameScene.scene
+        // └── objects.root
+        //     └── objects.door
+        //
+
         // root object
         this.objects.root = new THREE.Object3D();
         this.objects.root.position.set(...this.pos);
@@ -35,6 +41,7 @@ class Door extends game.MonoBehavior {
 
         var loader = new THREE.TextureLoader(); // to load a resource
 
+        // load texture and add door object
         loader.load(
             this.image_url,
             (texture) => {
@@ -48,12 +55,17 @@ class Door extends game.MonoBehavior {
 
     update() {
         if (!this.isOpening) return;
-        if (this.type === 0) {
-            if (this.objects.door.position.x <= -50) {
-                this.isOpening = false;
-                return;
-            }
+        switch (this.type) {
+        case 0: // slide to left
+            if (this.objects.door.position.x <= -50) return this.isOpening = false;
             this.objects.door.position.x -= 5;
+            break;
+        case 1: // slide to right
+            if (this.objects.door.position.x >= 50) return this.isOpening = false;
+            this.objects.door.position.x += 5;
+            break;
+        default:
+            this.isOpening = false;
         }
     }
 
