@@ -85,7 +85,7 @@ class EventEmitter {
 
 // export
 if (typeof window !== 'undefined') {
-  window.EventEmitter = EventEmitter;
+    window.EventEmitter = EventEmitter;
 } else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports.EventEmitter = EventEmitter;
+    module.exports.EventEmitter = EventEmitter;
 }
