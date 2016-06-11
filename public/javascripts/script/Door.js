@@ -17,6 +17,7 @@ class Door extends game.MonoBehavior {
         switch (this.type) {
             case 0:  this.image_url = "/images/game/sliding-door-left.jpg";  break;
             case 1:  this.image_url = "/images/game/sliding-door-right.jpg"; break;
+            case 2:  this.image_url = ["/images/game/sliding-door-left.jpg", "/images/game/sliding-door-right.jpg"]; break;
             default: this.image_url = "";
         }
 
@@ -42,15 +43,43 @@ class Door extends game.MonoBehavior {
         var loader = new THREE.TextureLoader(); // to load a resource
 
         // load texture and add door object
-        loader.load(
-            this.image_url,
-            (texture) => {
-                geometry = new THREE.BoxGeometry(50, 100, 1);
-                material = new THREE.MeshPhongMaterial({ map: texture });
-                this.objects.door = new THREE.Mesh(geometry, material);
-                this.objects.root.add(this.objects.door);
-            }
-        );
+        switch (this.type) {
+        case 2: // has two doors to slide to both sides.
+            this.objects.door = [];
+
+            loader.load(
+                this.image_url[0],
+                (texture) => {
+                    geometry = new THREE.BoxGeometry(50, 100, 1);
+                    material = new THREE.MeshPhongMaterial({ map: texture });
+                    this.objects.door[0] = new THREE.Mesh(geometry, material);
+                    this.objects.door[0].position.x = -25;
+                    this.objects.root.add(this.objects.door[0]);
+                }
+            );
+            loader.load(
+                this.image_url[1],
+                (texture) => {
+                    geometry = new THREE.BoxGeometry(50, 100, 1);
+                    material = new THREE.MeshPhongMaterial({ map: texture });
+                    this.objects.door[1] = new THREE.Mesh(geometry, material);
+                    this.objects.door[1].position.x = +25;
+                    this.objects.root.add(this.objects.door[1]);
+                }
+            );
+            break;
+        default:
+            loader.load(
+                this.image_url,
+                (texture) => {
+                    geometry = new THREE.BoxGeometry(50, 100, 1);
+                    material = new THREE.MeshPhongMaterial({ map: texture });
+                    this.objects.door = new THREE.Mesh(geometry, material);
+                    this.objects.root.add(this.objects.door);
+                }
+            );
+        }
+
     }
 
     update() {
@@ -63,6 +92,12 @@ class Door extends game.MonoBehavior {
         case 1: // slide to right
             if (this.objects.door.position.x >= 50) return this.isOpening = false;
             this.objects.door.position.x += 5;
+            break;
+        case 2: // slide to both sides
+            console.log(this.objects.door[0].position.x);
+            if (this.objects.door[0].position.x <= - 50) return this.isOpening = false;
+            this.objects.door[0].position.x -= 5;
+            this.objects.door[1].position.x += 5;
             break;
         default:
             this.isOpening = false;
