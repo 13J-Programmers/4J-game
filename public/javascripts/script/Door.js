@@ -15,9 +15,9 @@ class Door extends game.MonoBehavior {
         // 1: slide to left, 2: slide to right, 3: slide to both sides,
         this.type = args.type;
         switch (this.type) {
-            case 0:  this.image_url = "/images/game/sliding-door-left.jpg";  break;
-            case 1:  this.image_url = "/images/game/sliding-door-right.jpg"; break;
-            case 2:  this.image_url = ["/images/game/sliding-door-left.jpg", "/images/game/sliding-door-right.jpg"]; break;
+            case 1:  this.image_url = "/images/game/sliding-door-left.jpg";  break;
+            case 2:  this.image_url = "/images/game/sliding-door-right.jpg"; break;
+            case 3:  this.image_url = ["/images/game/sliding-door-left.jpg", "/images/game/sliding-door-right.jpg"]; break;
             default: this.image_url = "";
         }
 
@@ -44,7 +44,7 @@ class Door extends game.MonoBehavior {
 
         // load texture and add door object
         switch (this.type) {
-        case 2: // has two doors to slide to both sides.
+        case 3: // has two doors to slide to both sides.
             this.objects.door = [];
 
             loader.load(
@@ -85,16 +85,15 @@ class Door extends game.MonoBehavior {
     update() {
         if (!this.isOpening) return;
         switch (this.type) {
-        case 0: // slide to left
+        case 1: // slide to left
             if (this.objects.door.position.x <= -50) return this.isOpening = false;
             this.objects.door.position.x -= 5;
             break;
-        case 1: // slide to right
+        case 2: // slide to right
             if (this.objects.door.position.x >= 50) return this.isOpening = false;
             this.objects.door.position.x += 5;
             break;
-        case 2: // slide to both sides
-            console.log(this.objects.door[0].position.x);
+        case 3: // slide to both sides
             if (this.objects.door[0].position.x <= - 50) return this.isOpening = false;
             this.objects.door[0].position.x -= 5;
             this.objects.door[1].position.x += 5;
@@ -104,7 +103,19 @@ class Door extends game.MonoBehavior {
         }
     }
 
-    openSesame() {
-        this.isOpening = true;
+    openSesame(method) {
+        switch (method) {
+        case "left":
+            if (this.type !== 1) return false;
+            return this.isOpening = true;
+        case "right":
+            if (this.type !== 2) return false;
+            return this.isOpening = true;
+        case "both-side":
+            if (this.type !== 3) return false;
+            return this.isOpening = true;
+        default:
+            return false;
+        }
     }
 }

@@ -24,11 +24,12 @@ document.body.appendChild(renderer.domElement);
 // └── gameScene
 //     ├── camera
 //     ├── renderer
-//     ├── new game.Door()
-//     ├── new game.Door()
-//     ├──  :
-//     ├── new game.Door()
-//     └── new game.OrbitControls()
+//     └── scene
+//         ├── new game.Player()
+//         ├── new game.Door()
+//         ├── new game.Door()
+//         ├──  :
+//         └──  new game.Door()
 //
 
 // init gameScene
@@ -41,7 +42,7 @@ let player = new game.Player().setOn(gameScene);
 let doors = [];
 const maxDoorNum = 10;
 for (var i = 0; i < maxDoorNum; i++) {
-    doors[i] = new game.Door({ type: getRandomInt(0, 2), pos: [0, 0, -200 * i] });
+    doors[i] = new game.Door({ type: getRandomInt(1, 3), pos: [0, 0, -200 * i] });
     doors[i].setOn(gameScene);
 }
 let currentDoor = doors.shift();
@@ -49,12 +50,30 @@ let currentDoor = doors.shift();
 // set OrbitControls
 //new game.OrbitControls().setOn(gameScene);
 
+const KEY_CODE_LEFT  = 37;
+const KEY_CODE_UP    = 38;
+const KEY_CODE_RIGHT = 39;
+const KEY_CODE_DOWN  = 40;
+const KEY_CODE_B     = 66;
+
 document.addEventListener("keydown" , function (e) {
     var keyCode = e.keyCode;
+    var method;
+
     console.log(keyCode);
-    currentDoor.openSesame();
-    currentDoor = doors.shift();
-    player.moveForward();
+    switch (keyCode) {
+        case KEY_CODE_LEFT : method = "left";  break;
+        case KEY_CODE_UP   : method = "up";    break;
+        case KEY_CODE_RIGHT: method = "right"; break;
+        case KEY_CODE_DOWN : method = "down";  break;
+        case KEY_CODE_B    : method = "both-side"; break;
+        default: method = "";
+    }
+
+    if (currentDoor.openSesame(method)) {
+        currentDoor = doors.shift();
+        player.moveForward();
+    }
 });
 
 // init mainProcess
