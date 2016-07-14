@@ -2,11 +2,16 @@
 
 @import url(https://fonts.googleapis.com/css?family=Fauna+One);
 
+@font-face {
+    font-family: "lanovePOP";
+    src: url(../fonts/lightnovelPOP.otf) format('opentype');
+}
+
 body {
     font: 16px/20px "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
     margin: 0;
     -webkit-font-smoothing: antialiased;
-    background-color: #CCCCCC;
+    background-color: #F7D358;
 }
 
 #wrapper {
@@ -14,11 +19,27 @@ body {
     text-align: center;
 }
 
+#spacer {
+    margin-top: 130px;
+}
+
+#titleblock {
+    width: 25%;
+    margin: 0 auto;
+    /*text-align: left;*/
+}
+
+#linkblock {
+    width: 25%;
+    margin: 0 auto;
+    /*text-align: left;*/
+}
+
 .title {
-    margin-top: 260px;
-    font-family: "Fauna One";
-    font-size: 2000%;
-    color: #FFFFFF;
+    font-family: "lanovePOP";
+    font-size: 800%;
+    color: #FA8258;
+    text-align: left;
 }
 
 h1 span {
@@ -27,15 +48,17 @@ h1 span {
 
 a, a:visited {
     text-decoration: none;
-    color: #483D8B;
+    color: #FFFFFF;
 }
 
 .pages {
     /*margin-left: 20px;*/
     /*padding-left: 50px;*/
     /*float: left;*/
-    font-family: "Fauna One";
-    font-size: 200%;
+    /*margin-top: 180px;*/
+    font-family: "lanovePOP";
+    font-size: 300%;
+    text-align: right;
 }
 
 #catch {

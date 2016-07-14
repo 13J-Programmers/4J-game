@@ -11,7 +11,7 @@ const scene = new THREE.Scene();
 // init camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
 camera.lookAt(new THREE.Vector3(0, 0, -10000));
-camera.position.z = 200;
+camera.position.z = 100;
 
 // init render
 const renderer = new THREE.WebGLRenderer();
@@ -40,7 +40,7 @@ let player = new game.Player().setOn(gameScene);
 
 // set doors
 let doors = [];
-const maxDoorNum = 10;
+const maxDoorNum = 100;
 for (var i = 0; i < maxDoorNum; i++) {
     doors[i] = new game.Door({ type: getRandomInt(1, 3), pos: [0, 0, -200 * i] });
     doors[i].setOn(gameScene);
