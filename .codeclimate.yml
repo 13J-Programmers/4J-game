@@ -11,3 +11,5 @@ ratings:
     - "**.es6"
     - "**.html"
     - "**.css"
+exclude_paths:
+  - "public/javascripts/lib"
