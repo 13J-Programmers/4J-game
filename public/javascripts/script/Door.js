@@ -22,7 +22,7 @@ class Door extends game.MonoBehavior {
         }
 
         // door position
-        this.pos = args.pos || [0, 0, 0];
+        this.position = args.position || new THREE.Vector3(0, 0, 0);
     }
 
     start() {
@@ -35,7 +35,7 @@ class Door extends game.MonoBehavior {
 
         // root object
         this.objects.root = new THREE.Object3D();
-        this.objects.root.position.set(...this.pos);
+        this.objects.root.position.set(...this.position.toArray());
         this.gameScene.scene.add(this.objects.root);
 
         let geometry, material;
