@@ -39,11 +39,13 @@ class Player extends game.MonoBehavior {
     // --- private ---
 
     _isReachedInNextDoor() {
-        let distanceBetweenDoors = 200;
-        return (this.gameScene.camera.position.z <= -(this.moveSteps * distanceBetweenDoors) + 130);
+        const distBetweenDoors  = window.game.settings['dist-between-doors'];
+        const stopPosBeforeDoor = window.game.settings['stop-pos-before-door'];
+        return (this.gameScene.camera.position.z <= -(this.moveSteps * distBetweenDoors) + stopPosBeforeDoor);
     }
 
     _calcAccelaration(t) {
-        return t * 0.01 + this.defaultAccelaration;
+        const slant = window.game.settings['player-accelaration'];
+        return t * slant + this.defaultAccelaration;
     }
 }

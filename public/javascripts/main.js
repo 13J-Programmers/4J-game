@@ -41,8 +41,10 @@ let player = new game.Player().setOn(gameScene);
 // set doors
 let doors = [];
 const maxDoorNum = 10;
+const distanceBetweenDoors = window.game.settings['dist-between-doors'];
+
 for (var i = 0; i < maxDoorNum; i++) {
-    doors[i] = new game.Door({ type: getRandomInt(1, 3), pos: [0, 0, -200 * i] });
+    doors[i] = new game.Door({ type: getRandomInt(1, 3), pos: [0, 0, -(distanceBetweenDoors * i)] });
     doors[i].setOn(gameScene);
 }
 let currentDoor = doors.shift();
