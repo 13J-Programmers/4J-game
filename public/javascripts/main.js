@@ -60,7 +60,6 @@ document.addEventListener("keydown" , function (e) {
     var keyCode = e.keyCode;
     var method;
 
-    console.log(keyCode);
     switch (keyCode) {
         case KEY_CODE_LEFT : method = "left";  break;
         case KEY_CODE_UP   : method = "up";    break;
