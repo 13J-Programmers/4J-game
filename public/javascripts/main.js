@@ -11,7 +11,7 @@ const scene = new THREE.Scene();
 // init camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
 camera.lookAt(new THREE.Vector3(0, 0, -10000));
-camera.position.z = 100;
+camera.position.z = window.game.settings['stop-pos-before-door'];
 
 // init render
 const renderer = new THREE.WebGLRenderer();
