@@ -45,8 +45,8 @@ const distanceBetweenDoors = window.game.settings['dist-between-doors'];
 
 for (var i = 0; i < maxDoorNum; i++) {
     doors[i] = new game.Door({
-      type: getRandomInt(1, 3),
-      position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * i))
+        type: getRandomInt(1, 3),
+        position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * i))
     });
     doors[i].setOn(gameScene);
 }
@@ -55,22 +55,16 @@ let currentDoor = doors.shift();
 // set OrbitControls
 //new game.OrbitControls().setOn(gameScene);
 
-const KEY_CODE_LEFT  = 37;
-const KEY_CODE_UP    = 38;
-const KEY_CODE_RIGHT = 39;
-const KEY_CODE_DOWN  = 40;
-const KEY_CODE_B     = 66;
-
 document.addEventListener("keydown" , function (e) {
     var keyCode = e.keyCode;
     var method;
 
     switch (keyCode) {
-        case KEY_CODE_LEFT : method = "left";  break;
-        case KEY_CODE_UP   : method = "up";    break;
-        case KEY_CODE_RIGHT: method = "right"; break;
-        case KEY_CODE_DOWN : method = "down";  break;
-        case KEY_CODE_B    : method = "both-side"; break;
+        case 37: /* KEY_CODE_LEFT  */ method = "left";      break;
+        case 38: /* KEY_CODE_UP    */ method = "up";        break;
+        case 39: /* KEY_CODE_RIGHT */ method = "right";     break;
+        case 40: /* KEY_CODE_DOWN  */ method = "down";      break;
+        case 66: /* KEY_CODE_B     */ method = "both-side"; break;
         default: method = "";
     }
 
