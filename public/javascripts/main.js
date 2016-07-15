@@ -44,7 +44,10 @@ const maxDoorNum = 100;
 const distanceBetweenDoors = window.game.settings['dist-between-doors'];
 
 for (var i = 0; i < maxDoorNum; i++) {
-    doors[i] = new game.Door({ type: getRandomInt(1, 3), pos: [0, 0, -(distanceBetweenDoors * i)] });
+    doors[i] = new game.Door({
+      type: getRandomInt(1, 3),
+      position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * i))
+    });
     doors[i].setOn(gameScene);
 }
 let currentDoor = doors.shift();
@@ -70,6 +73,9 @@ document.addEventListener("keydown" , function (e) {
         case KEY_CODE_B    : method = "both-side"; break;
         default: method = "";
     }
+
+    // Prevent from opening a door far from here.
+    if (player.position.distanceTo(currentDoor.position) > 500) return;
 
     if (currentDoor.openSesame(method)) {
         currentDoor = doors.shift();
