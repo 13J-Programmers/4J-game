@@ -68,6 +68,11 @@ class EventEmitter {
         return false;
     }
 
+    // remove all listeners from event
+    removeAllListeners(eventName) {
+        this.listeners.set(eventName, []);
+    }
+
     // issue the event
     // return true or false
     emit(eventName, ...args) {
