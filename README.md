@@ -15,23 +15,35 @@ Feature
 -------
 
 - ブラウザ上で遊べる
-- オブジェクトの傾きを手で操作し、障害物を避けながら進む前後スクロールなゲーム
+- 対人戦ができる
+- 手で操作し、迫り来るドアを次々と開けながら時間内でどれだけ進めるか競うゲーム
+（もしくは制限時間以内に脱出できるか）
 
-### Note :
+Environment
+------------
 
-動作環境は、ES2015のJavaScriptはが動作するブラウザを前提にしています。  
-（2015年3月4日の時点で）動作するブラウザのバージョンは次の通りです。
+### Browser
 
-- Chrome 49 以上
-- FireFox 45 以上
-- Edge 13 以上
+動作環境は、ES2015のJavaScriptはが動作するブラウザを前提にしています。
+（2015年7月15日の時点で）動作するブラウザのバージョンは次の通りです。
 
-（2015年3月4日の時点で）動作しないブラウザは次の通りです。
+- Chrome 49+
+- FireFox 45+
+- Edge 13+
+- Safari 10+ (beta)
+
+（2015年7月15日の時点で）動作しないブラウザは次の通りです。
 
 - IE
 - Safari
 - Android Browser
 - iOS Safari
+
+### Server
+
+ES2015が動くNodeのバージョンは、6.0以上です。
+
+- Node 6.0+
 
 
 TODO
@@ -58,13 +70,17 @@ TODO
     - [x] MonoBehavior#setOn()は、自身の描画を行うSceneを設定する
     - [x] ゲーム初期化時に全MonoBehaviorのstart()を実行する
     - [x] render()周りの骨組み（イベント駆動で全MonoBehaviorのupdate()メソッドをrender()から呼ぶ）
-    - [ ] GameManagerの作成
-    - [ ] FieldGeneratorの作成
+    - [x] GameManagerの作成 -> `main.js`で行うことにした
+    - [x] FieldGeneratorの作成 -> 基本的に`main.js`で行うことにした
     - [ ] PlayerとControllerの作成
 - [ ] プレイヤーの操作
     - [ ] キーボードによる操作
     - [ ] LeapMotionによる操作
+    - [ ] スマホのスワイプなどによる操作
     - [ ] 置き換え可能な操作デバイスとそれを扱うコード
+        - アクセス元のデバイスがスマホかタブレットなら、スワイプによる操作を受け付ける
+        - LeapMotionが接続されていれば、LeapMotionの操作を受け付ける（キーボードからは基本的に受け付けない）
+        - LeapMotionの接続が切れたら、キーボード操作に切り替える
 
 
 Contributing
@@ -80,4 +96,4 @@ Contributing
 Contact us
 ----------
 
-If you have any questions, please ask us ([issues](https://github.com/13J-Programmers/4J-game/issues), slack)
+If you have any questions, please ask us ([issues](https://github.com/13J-Programmers/4J-game/issues), [slack](https://n13decs.slack.com/))

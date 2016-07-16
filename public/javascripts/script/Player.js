@@ -10,6 +10,8 @@ class Player extends game.MonoBehavior {
     }
 
     start() {
+        this.position = this.gameScene.camera.position;
+
         // steps count
         this.moveSteps = 0;
         // accelaration

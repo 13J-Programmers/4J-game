@@ -12,4 +12,4 @@ ratings:
     - "**.html"
     - "**.css"
 exclude_paths:
-  - "public/javascripts/**"
+  - "public/javascripts/lib"
