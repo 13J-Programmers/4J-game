@@ -1,10 +1,4 @@
 
-// Utils
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 // init scene
 const scene = new THREE.Scene();
 
@@ -38,19 +32,9 @@ const gameScene = new game.GameScene(scene, camera, renderer);
 // set player
 let player = new game.Player().setOn(gameScene);
 
-// set doors
-let doors = [];
-const maxDoorNum = 100;
-const distanceBetweenDoors = window.game.settings['dist-between-doors'];
-
-for (var i = 0; i < maxDoorNum; i++) {
-    doors[i] = new game.Door({
-        type: getRandomInt(1, 3),
-        position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * i))
-    });
-    doors[i].setOn(gameScene);
-}
-let currentDoor = doors.shift();
+let fieldGenerator = new game.FieldGenerator().setOn(gameScene);
+fieldGenerator.generateDoor();
+fieldGenerator.generateDoor();
 
 // set OrbitControls
 //new game.OrbitControls().setOn(gameScene);
@@ -69,11 +53,11 @@ document.addEventListener("keydown" , function (e) {
     }
 
     // Prevent from opening a door far from here.
-    if (player.position.distanceTo(currentDoor.position) > 500) return;
+    if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return;
 
-    if (currentDoor.openSesame(method)) {
-        currentDoor = doors.shift();
+    if (fieldGenerator.openDoor(method)) {
         player.moveForward();
+        fieldGenerator.generateDoor();
     }
 });
 

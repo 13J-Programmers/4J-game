@@ -41,11 +41,16 @@
 
         start() {
             this.emit('start');
+            this.removeAllListeners('start');
+
             this.render();
         }
 
         // rendering
         render() {
+            this.emit('start');
+            this.removeAllListeners('start');
+
             this.emit('update');
 
             // continually invoke this
