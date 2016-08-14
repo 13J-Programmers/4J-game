@@ -22,15 +22,27 @@ class GameScene {
         let geometry, material;
 
         // ground
-        geometry = new THREE.PlaneGeometry(100, 10000);
+        geometry = new THREE.PlaneGeometry(50, 10000);
         material = new THREE.MeshPhongMaterial({
-            color: 0xf0601d,
+            color: 0x333333,
             side: THREE.DoubleSide,
         });
-        this.objects.plane = new THREE.Mesh(geometry, material);
-        this.objects.plane.position.z = -5000 + 100;
-        this.objects.plane.position.y = -50;
-        this.objects.plane.rotation.x = Math.PI / 2;
-        this.scene.add(this.objects.plane);
+        this.objects.load = new THREE.Mesh(geometry, material);
+        this.objects.load.position.z = -5000 + 100;
+        this.objects.load.position.y = -50;
+        this.objects.load.position.y += 1;
+        this.objects.load.rotation.x = Math.PI / 2;
+        this.scene.add(this.objects.load);
+
+        geometry = new THREE.PlaneGeometry(400, 10000);
+        material = new THREE.MeshPhongMaterial({
+            color: 0x231f20,
+            side: THREE.DoubleSide,
+        });
+        this.objects.ground = new THREE.Mesh(geometry, material);
+        this.objects.ground.position.z = -5000 + 100;
+        this.objects.ground.position.y = -50;
+        this.objects.ground.rotation.x = Math.PI / 2;
+        this.scene.add(this.objects.ground);
     }
 }
