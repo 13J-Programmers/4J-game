@@ -37,9 +37,12 @@ fieldGenerator.generateDoor();
 fieldGenerator.generateDoor();
 
 // set OrbitControls
-//new game.OrbitControls().setOn(gameScene);
+// new game.OrbitControls().setOn(gameScene);
 
 // --- input from Keyboard ---
+
+// code to check it's keycode
+// document.addEventListener("keydown" , function (e) { console.log(e.keyCode); });
 
 document.addEventListener("keydown" , function (e) {
   var keyCode = e.keyCode;
@@ -51,6 +54,7 @@ document.addEventListener("keydown" , function (e) {
     case 39: /* KEY_CODE_RIGHT */ method = "right";     break;
     case 40: /* KEY_CODE_DOWN  */ method = "down";      break;
     case 66: /* KEY_CODE_B     */ method = "both-side"; break;
+    case 84: /* KEY_CODE_T     */ method = "turn";      break;
     default: method = "";
   }
 
