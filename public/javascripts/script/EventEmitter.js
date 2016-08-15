@@ -18,79 +18,79 @@
 
 // object to test whether or not it is a function
 const _isFunction = (obj) => {
-    return typeof obj == 'function';
+  return typeof obj == 'function';
 };
 
 class EventEmitter {
-    constructor() {
-        // All listeners is stored to listeners.
-        this.listeners = new Map();
+  constructor() {
+    // All listeners is stored to listeners.
+    this.listeners = new Map();
+  }
+
+  // check if having listener
+  // return true or false
+  has(eventName) {
+    return this.listeners.has(eventName);
+  }
+
+  // add event listener
+  addListener(eventName, callback) {
+    if (!this.listeners.has(eventName)) {
+      this.listeners.set(eventName, []);
     }
+    this.listeners.get(eventName).push(callback);
+  }
 
-    // check if having listener
-    // return true or false
-    has(eventName) {
-        return this.listeners.has(eventName);
+  // alias for addListener
+  on(eventName, callback) {
+    this.addListener(eventName, callback);
+  }
+
+  // remove listener from event
+  // returns true or false
+  removeListener(eventName, callback) {
+    let listeners = this.listeners.get(eventName);
+    let index;
+
+    if (listeners && listeners.length) {
+      index = listeners.reduce((i, listener, index) => {
+        return (_isFunction(listener) && listener === callback) ?
+          i = index :
+          i;
+      }, -1);
+
+      if (index > -1) {
+        listeners.splice(index, 1);
+        this.listeners.set(eventName, listeners);
+        return true;
+      }
     }
+    return false;
+  }
 
-    // add event listener
-    addListener(eventName, callback) {
-        if (!this.listeners.has(eventName)) {
-            this.listeners.set(eventName, []);
-        }
-        this.listeners.get(eventName).push(callback);
+  // remove all listeners from event
+  removeAllListeners(eventName) {
+    this.listeners.set(eventName, []);
+  }
+
+  // issue the event
+  // return true or false
+  emit(eventName, ...args) {
+    let listeners = this.listeners.get(eventName);
+
+    if (listeners && listeners.length) {
+      listeners.forEach((listener) => {
+        listener(...args);
+      });
+      return true;
     }
-
-    // alias for addListener
-    on(eventName, callback) {
-        this.addListener(eventName, callback);
-    }
-
-    // remove listener from event
-    // returns true or false
-    removeListener(eventName, callback) {
-        let listeners = this.listeners.get(eventName);
-        let index;
-
-        if (listeners && listeners.length) {
-            index = listeners.reduce((i, listener, index) => {
-                return (_isFunction(listener) && listener === callback) ?
-                    i = index :
-                    i;
-            }, -1);
-
-            if (index > -1) {
-                listeners.splice(index, 1);
-                this.listeners.set(eventName, listeners);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // remove all listeners from event
-    removeAllListeners(eventName) {
-        this.listeners.set(eventName, []);
-    }
-
-    // issue the event
-    // return true or false
-    emit(eventName, ...args) {
-        let listeners = this.listeners.get(eventName);
-
-        if (listeners && listeners.length) {
-            listeners.forEach((listener) => {
-                listener(...args);
-            });
-            return true;
-        }
-        return false;
-    }
+    return false;
+  }
 }
 
 // export
 if (typeof window !== 'undefined') {
-    window.EventEmitter = EventEmitter;
+  window.EventEmitter = EventEmitter;
 } else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports.EventEmitter = EventEmitter;
+  module.exports.EventEmitter = EventEmitter;
 }

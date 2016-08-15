@@ -26,26 +26,26 @@ window.game = window.game || {}
 window.game.MonoBehavior =
 
 class MonoBehavior {
-    constructor() {
-        new game.Game().addListener('start', () => this.start());
-        this._updateProcess = () => this.update();
-        new game.Game().addListener('update', this._updateProcess);
-    }
+  constructor() {
+    new game.Game().addListener('start', () => this.start());
+    this._updateProcess = () => this.update();
+    new game.Game().addListener('update', this._updateProcess);
+  }
 
-    setOn(gameScene) {
-        this.gameScene = gameScene;
-        return this;
-    }
+  setOn(gameScene) {
+    this.gameScene = gameScene;
+    return this;
+  }
 
-    start() {
-        //
-    }
+  start() {
+    //
+  }
 
-    update() {
-        //
-    }
+  update() {
+    //
+  }
 
-    destructor() {
-        new game.Game().removeListener('update', this._updateProcess);
-    }
+  destructor() {
+    new game.Game().removeListener('update', this._updateProcess);
+  }
 }
