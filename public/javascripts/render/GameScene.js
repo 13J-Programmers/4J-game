@@ -21,7 +21,7 @@ class GameScene {
 
         let geometry, material;
 
-        // ground
+        // load
         geometry = new THREE.PlaneGeometry(50, 10000);
         material = new THREE.MeshPhongMaterial({
             color: 0x333333,
@@ -33,7 +33,7 @@ class GameScene {
         this.objects.load.position.y += 1;
         this.objects.load.rotation.x = Math.PI / 2;
         this.scene.add(this.objects.load);
-
+        // ground
         geometry = new THREE.PlaneGeometry(400, 10000);
         material = new THREE.MeshPhongMaterial({
             color: 0x231f20,

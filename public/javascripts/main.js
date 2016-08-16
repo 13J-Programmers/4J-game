@@ -54,6 +54,7 @@ document.addEventListener("keydown" , function (e) {
     case 39: /* KEY_CODE_RIGHT */ method = "right";     break;
     case 40: /* KEY_CODE_DOWN  */ method = "down";      break;
     case 66: /* KEY_CODE_B     */ method = "both-side"; break;
+    case 83: /* KEY_CODE_S     */ method = "switch";    break;
     case 84: /* KEY_CODE_T     */ method = "turn";      break;
     default: method = "";
   }

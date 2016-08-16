@@ -236,7 +236,7 @@ const doors = {
       return (method === "both-side");
     },
     openMotion: function (door) {
-      // rotate
+      // fold
       if (door[0].rotation.y >= Math.PI / 2) return false;
       door[0].position.x -= 1.0;
       door[0].position.z -= 1.0;
@@ -320,7 +320,6 @@ const doors = {
       if (door[0].position.x <= -75) return false;
       door[0].position.x -= 4;
       door[1].position.x += 4;
-
       return true;
     },
   },
@@ -330,26 +329,75 @@ const doors = {
     texture3: loader.load("/images/game/doors/door10-2.png"),
     texture4: loader.load("/images/game/doors/door10-2right.png"),
     addDoorAndWallMesh: function (threejsObjects) {
-      //
+      let geometry, material;
+      // door
+      geometry = new THREE.BoxGeometry(50, 100, 0);
+      threejsObjects.door = {}
+      material = new THREE.MeshBasicMaterial({ map: this.texture2 });
+      threejsObjects.door[0] = new THREE.Mesh(geometry, material);
+      threejsObjects.door[0].position.x -= 25;
+      threejsObjects.root.add(threejsObjects.door[0]);
+      material = new THREE.MeshBasicMaterial({ map: this.texture3 });
+      threejsObjects.door[1] = new THREE.Mesh(geometry, material);
+      threejsObjects.door[1].position.x += 25;
+      threejsObjects.root.add(threejsObjects.door[1]);
+      // wall
+      geometry = new THREE.BoxGeometry(300, 100, 0);
+      material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+      threejsObjects.wall = {};
+      threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+      threejsObjects.wall.left.position.x -= 210;
+      threejsObjects.root.add(threejsObjects.wall.left);
+      threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+      threejsObjects.wall.right.position.x += 210;
+      threejsObjects.root.add(threejsObjects.wall.right);
+      geometry = new THREE.BoxGeometry(800, 200, 0);
+      threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+      threejsObjects.wall.top.position.y += 149;
+      threejsObjects.root.add(threejsObjects.wall.top);
+      // wall texture
+      geometry = new THREE.BoxGeometry(20, 100, 0);
+      material = new THREE.MeshBasicMaterial({ map: this.texture1 });
+      threejsObjects.wall.leftTexture = new THREE.Mesh(geometry, material);
+      threejsObjects.wall.leftTexture.position.x -= 60;
+      threejsObjects.wall.leftTexture.position.z += 1;
+      threejsObjects.root.add(threejsObjects.wall.leftTexture);
+      material = new THREE.MeshBasicMaterial({ map: this.texture4 });
+      threejsObjects.wall.rightTexture = new THREE.Mesh(geometry, material);
+      threejsObjects.wall.rightTexture.position.x += 60;
+      threejsObjects.wall.rightTexture.position.z += 1;
+      threejsObjects.root.add(threejsObjects.wall.rightTexture);
+
+      return threejsObjects;
     },
     openSesame: function (method) {
-      //
+      return (method === "both-side");
     },
     openMotion: function (door) {
-      //
+      // rotate forward
+      if (door[0].rotation.y >= Math.PI / 2) return false;
+      // left
+      door[0].position.x -= 1.5;
+      door[0].position.z -= 1.0;
+      door[0].rotation.y += 0.1;
+      // right
+      door[1].position.x += 1.5;
+      door[1].position.z -= 1.0;
+      door[1].rotation.y -= 0.1;
+      return true;
     },
   },
   door11: {
-    texture1: loader.load("/images/game/doors/door11-1.png"),
-    texture1: loader.load("/images/game/doors/door11-2.png"),
-    addDoorAndWallMesh: function (threejsObjects) {
-      //
-    },
+    texture1: loader.load("/images/game/doors/door11.png"),
+    addDoorAndWallMesh: oneDoor,
     openSesame: function (method) {
-      //
+      return (method === "up");
     },
     openMotion: function (door) {
-      //
+      // move up
+      if (door.position.y >= 150) return false;
+      door.position.y += 6;
+      return true;
     },
   },
   door12: {
@@ -397,6 +445,54 @@ const doors = {
 
       // rotate wheel
       door.wheel.rotation.z += 0.1;
+      return true;
+    },
+  },
+  door13: {
+    texture1: loader.load("/images/game/doors/door13-1.png"),
+    texture2: loader.load("/images/game/doors/door13-2.png"),
+    addDoorAndWallMesh: function (threejsObjects) {
+      threejsObjects = twoDoor.bind(this)(threejsObjects);
+      // render switch
+      let geometry, material;
+      // switch box
+      geometry = new THREE.BoxGeometry(10, 20);
+      material = new THREE.MeshBasicMaterial({ color: 0x333333 });
+      threejsObjects.door.doorSwitchBox = new THREE.Mesh(geometry, material);
+      threejsObjects.door.doorSwitchBox.position.x -= 50;
+      threejsObjects.door.doorSwitchBox.position.z += 1;
+      threejsObjects.root.add(threejsObjects.door.doorSwitchBox);
+      // lower switch
+      threejsObjects.door.doorSwitch = {}
+      geometry = new THREE.CircleGeometry(2, 32);
+      material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      threejsObjects.door.doorSwitch[0] = new THREE.Mesh(geometry, material);
+      threejsObjects.door.doorSwitch[0].position.y -= 5;
+      threejsObjects.door.doorSwitch[0].position.z += 2;
+      threejsObjects.door.doorSwitchBox.add(threejsObjects.door.doorSwitch[0]);
+      // upper switch
+      threejsObjects.door.doorSwitch[1] = new THREE.Mesh(geometry, material);
+      threejsObjects.door.doorSwitch[1].position.y += 5;
+      threejsObjects.door.doorSwitch[1].position.z -= 2;
+      threejsObjects.door.doorSwitchBox.add(threejsObjects.door.doorSwitch[1]);
+
+      return threejsObjects;
+    },
+    openSesame: function (method) {
+      return (method === "switch");
+    },
+    openMotion: function (door) {
+      // startup
+      if (door.isOpened === undefined) {
+        door.isOpened = true;
+        door.doorSwitch[0].position.z -= 4;
+        door.doorSwitch[1].position.z += 4;
+      }
+
+      // shift
+      if (door[0].position.x <= -50) return false;
+      door[0].position.x -= 4;
+      door[1].position.x += 4;
       return true;
     },
   },
