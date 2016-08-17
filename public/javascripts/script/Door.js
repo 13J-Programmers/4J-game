@@ -2,7 +2,7 @@
 // load texture
 const loader = new THREE.TextureLoader();
 
-
+// put a door
 const oneDoor = function (threejsObjects) {
   let geometry, material;
   // door
@@ -28,6 +28,7 @@ const oneDoor = function (threejsObjects) {
   return threejsObjects;
 };
 
+// put two door
 const twoDoor = function (threejsObjects) {
   let geometry, material;
   // door
@@ -59,7 +60,13 @@ const twoDoor = function (threejsObjects) {
   return threejsObjects;
 };
 
-
+// door data
+//
+// each key was indexed by incrementally
+// - texture*: set THREE.js texture via loader
+// - addDoorAndWallMesh: render door and walls
+// - openSesame: return boolean by comparing opening way
+// - openMotion: this function is invoked continually till return false
 const doors = {
   door1: {
     texture1: loader.load("/images/game/doors/door1.png"),
@@ -483,8 +490,8 @@ const doors = {
     },
     openMotion: function (door) {
       // startup
-      if (door.isOpened === undefined) {
-        door.isOpened = true;
+      if (door.startOpening === undefined) {
+        door.startOpening = true;
         door.doorSwitch[0].position.z -= 4;
         door.doorSwitch[1].position.z += 4;
       }
@@ -498,6 +505,7 @@ const doors = {
   },
 }
 
+
 window.game = window.game || {}
 window.game.Door =
 
@@ -510,7 +518,7 @@ class Door extends game.MonoBehavior {
     // flags
     this.isOpening = false;
 
-    // door type (1-12)
+    // door type (1-13)
     this.type = args.type;
     this.door = doors["door" + this.type];
 
@@ -531,20 +539,21 @@ class Door extends game.MonoBehavior {
     this.objects.root.position.set(...this.position.toArray());
     this.gameScene.scene.add(this.objects.root);
 
-    let geometry, material;
-    geometry = new THREE.BoxGeometry(50, 100, 1);
-
+    // render door and walls
     this.objects = this.door.addDoorAndWallMesh(this.objects);
   }
 
   update() {
     if (!this.isOpening) return;
     const moved = this.door.openMotion(this.objects.door);
+
+    // If the door is opened, function openMotion() will never be invoked.
     if (!moved) this.isOpening = false;
     return;
   }
 
   openSesame(method) {
+    // Whether the opening method of the door is correct or not.
     if (this.door.openSesame(method)) {
       this.isOpening = true;
       return true;
