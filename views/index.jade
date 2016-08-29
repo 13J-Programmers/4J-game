@@ -5,20 +5,11 @@ block header
 
 block content
   div#wrapper
-    div#spacer
-    div#titleblock
-      h2.title
-        メイド
-      h2.title
-        イン
-      h2.title
-        ４J
-    div#linkblock
-      h3.pages
-        a(href="game/" target="_blank") ゲームであそぶ
-      h3.pages
-        a(href="https://github.com/13J-Programmers/4J-game/" target="_blank") ぎっとはぶ
+    div#menu
+      h1#title - DOOR -
+      h2#play
+       a(href="game/") Play
 
-block footer
-  footer
-    p Copyright 2016 &copy; 13J-Programmers
+    div#container
+      script(src='/javascripts/lib/three.min.js')
+      script(src='/javascripts/index.js')

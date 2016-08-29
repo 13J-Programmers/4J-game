@@ -1,81 +1,54 @@
-/* css for 4J-class project */
-
-@import url(https://fonts.googleapis.com/css?family=Fauna+One);
-
-@font-face {
-    font-family: "lanovePOP";
-    src: url(../fonts/lightnovelPOP.otf) format('opentype');
-}
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
 
 body {
+    background-color: #000;
     font: 16px/20px "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    background-color: #F7D358;
+    margin: 0px;
+    overflow: hidden;
 }
 
-#wrapper {
+#wrapper{
+    width: 80%;
     margin: 0 auto;
+}
+
+#menu {
+    float: left;
+    width: 20%;
     text-align: center;
+    font-family: "Merriweather"
 }
 
-#spacer {
-    margin-top: 130px;
+#title {
+    font-size: 3rem;
+    margin-top: 110%;
+    color: #FFF;
+/*              padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: -30px;
+    padding-right: -30px;
+    border: 1px solid #FFF;*/
 }
 
-#titleblock {
-    width: 45%;
-    margin: 0 auto;
-    /*text-align: left;*/
+#play {
+    color: #FFF;
+    margin-top: 60%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: -30px;
+    padding-right: -30px;
+    border: 1px solid #FFF;
 }
 
-#linkblock {
-    width: 45%;
-    margin: 0 auto;
-    /*text-align: left;*/
+#container {
+    margin-left: 20%;
 }
 
-.title {
-    font-family: "lanovePOP";
-    font-size: 800%;
-    color: #FA8258;
-    text-align: left;
-}
-
-h1 span {
-    color: #0099CC;
-}
-
-a, a:visited {
+a {
+    color: #FFF;
     text-decoration: none;
-    color: #FFFFFF;
 }
 
-.pages {
-    /*margin-left: 20px;*/
-    /*padding-left: 50px;*/
-    /*float: left;*/
-    /*margin-top: 180px;*/
-    font-family: "lanovePOP";
-    font-size: 300%;
-    text-align: right;
-}
-
-#catch {
-    /*text-align: center;*/
-    margin-top: -50px;
-    margin-bottom: 100px;
-    font-family: "Fauna One";
-    font-size: 240%;
-    color: #FFFFFF;
-}
-
-footer {
-    margin-top: 100px;
-    height: 68px;
-}
-
-footer p {
-    text-align: center;
-    padding-top: 24px;
+a:hover {
+    color: #ff0080;
 }
