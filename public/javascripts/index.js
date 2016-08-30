@@ -2,7 +2,7 @@ var camera, scene, renderer,
 particle1, particle2, particle2,
 light1, light2, light3, light4,
 light5, light6, light7, light8,
-object, door, loadervar, spotLight, spotLight2;
+object, door, knob, lamp, lamptube, loadervar, spotLight, spotLight2;
 
 var clock = new THREE.Clock();
 
@@ -31,13 +31,41 @@ function init() {
 
 	// loader.load( "obj/walt/WaltHead_bin.js", callback );
 
-	var geometry = new THREE.BoxGeometry(36,60,1);
+	// ==Door==
+	var geometry = new THREE.BoxGeometry(36,55,1);
 	var material = new THREE.MeshStandardMaterial( { color: 0x222222 } );
 	door = new THREE.Mesh( geometry, material );
 	scene.add( door );
+	door.position.y = -5;
+
+
+	// ==Lamp Tube==
+	var geometry = new THREE.CylinderGeometry(0.6,0.6,30,32);
+	var material = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
+	lamptube = new THREE.Mesh( geometry, material );
+	scene.add( lamptube );
+	lamptube.rotation.z = Math.PI/2;
+	lamptube.position.y = 30;
+
+	// ==Lamp Shade==
+	var geometry = new THREE.BoxGeometry(34,1.5,4);
+	var material = new THREE.MeshStandardMaterial( { color: 0xCCCCCC } );
+	lamp = new THREE.Mesh( geometry, material );
+	scene.add( lamp );
+	lamp.position.y = 31.5;
+
+
+	// ==Door Knob==
+	// var geometry = new THREE.CylinderGeometry(1,1,5,32);
+	// var material = new THREE.MeshStandardMaterial( { color: 0x222222 } );
+	// knob = new THREE.Mesh( geometry, material );
+	// scene.add( knob );
+	// knob.rotation.x = Math.PI/2;
+	// knob.position.x = 13.5;
+	// knob.position.y = -5;
+	// knob.position.z = 10;
 
 	var sphere = new THREE.SphereGeometry( 0.1, 16, 8 );
-
 
 	// light1 = new THREE.PointLight( 0xff0000, 10, 50 );
 	// light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffffff } ) ) );
@@ -60,15 +88,16 @@ function init() {
 	directionalLight.position.set( 0, -1, 0 );
 	scene.add( directionalLight );
 
-	spotLight = new THREE.SpotLight( 0xFFFFFF );
-	spotLight.position.set( 30, 50, 100 );
+	spotLight = new THREE.SpotLight( 0xFFFAF0 );
+	spotLight.position.set( 0, 40, 100 );
+	// spotLight.position = lamp.position;
 	spotLight.target = door;
 	scene.add( spotLight );
 
-	spotLight2 = new THREE.SpotLight( 0xFFFFFF );
-	spotLight2.position.set( -30, 50, 100 );
-	spotLight2.target = door;
-	scene.add( spotLight2 );
+	// spotLight2 = new THREE.SpotLight( 0xFFF8DC );
+	// spotLight2.position.set( -30, 50, 100 );
+	// spotLight2.target = door;
+	// scene.add( spotLight2 );
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -114,11 +143,11 @@ function render() {
 	if ((time%10) * Math.random() < 0.2) {
 		// door.rotation.y += delta;
 		spotLight.intensity  =  0.6;
-		spotLight2.intensity =  0.6;
+		// spotLight2.intensity =  0.6;
 	}
 	else {
-		spotLight.intensity  =  1.8 + Math.sin( time * 0.3 ) *0.1;
-		spotLight2.intensity =  1.8 + Math.sin( time * 0.3 ) *0.1;
+		spotLight.intensity  =  2.3 + Math.sin( time * 0.3 ) *0.1;
+		// spotLight2.intensity =  1.8 + Math.sin( time * 0.3 ) *0.1;
 	}
 
 	// spotLight.intensity  = Math.sin( time * 0.4 ) * 2;
