@@ -7,7 +7,7 @@ class KeyController {
     //
   }
 
-  static enable() {
+  static enable(callback) {
     // --- input from Keyboard ---
 
     // code to check it's keycode
@@ -25,15 +25,10 @@ class KeyController {
         case 66: /* KEY_CODE_B     */ method = "both-side"; break;
         case 83: /* KEY_CODE_S     */ method = "switch";    break;
         case 84: /* KEY_CODE_T     */ method = "turn";      break;
-        default: method = "";
       }
 
-      // Prevent from opening a door far from here.
-      if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return;
-
-      if (fieldGenerator.openDoor(method)) {
-        player.moveForward();
-        fieldGenerator.generateDoor();
+      if (method) {
+        callback.call(null, method);
       }
     });
   }

@@ -49,5 +49,18 @@ mainProcess.set(gameScene);
 mainProcess.start();
 
 // game controller
-game.KeyController.enable();
-game.LeapController.enable();
+game.KeyController.enable(detectUserInput);
+game.LeapController.enable(detectUserInput);
+
+// this function is invoked when controllers detect user inputs.
+function detectUserInput(method) {
+  // argument +method+ -- type String is expected
+
+  // Prevent from opening a door far from here.
+  if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return;
+
+  if (fieldGenerator.openDoor(method)) {
+    player.moveForward();
+    fieldGenerator.generateDoor();
+  }
+}

@@ -7,7 +7,7 @@ class LeapController {
     //
   }
 
-  static enable() {
+  static enable(callback) {
     // --- input from LeapMotion ---
 
     function isLeftHandMoveLeft(leftHand) {
@@ -40,14 +40,10 @@ class LeapController {
         if (isLeftHandMoveLeft(leftHand) && isRightHandMoveRight(rightHand)) {
           method = "both-side"
         }
-        if (method) console.log(method);
 
-        // Prevent from opening a door far from here.
-        if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return true;
-
-        if (fieldGenerator.openDoor(method)) {
-          player.moveForward();
-          fieldGenerator.generateDoor();
+        if (method) {
+          console.log(method);
+          callback.call(null, method);
         }
       });
   }
