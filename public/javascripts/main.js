@@ -32,6 +32,10 @@ const gameScene = new game.GameScene(scene, camera, renderer);
 // set player
 let player = new game.Player().setOn(gameScene);
 
+// set a start scene
+// let startScene = new game.StartScene().setOn(gameScene);
+
+// set fieldGenerator
 let fieldGenerator = new game.FieldGenerator().setOn(gameScene);
 fieldGenerator.generateDoor();
 fieldGenerator.generateDoor();
