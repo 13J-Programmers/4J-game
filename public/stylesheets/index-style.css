@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Merriweather);
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
 
 body {
     background-color: #000;
@@ -16,18 +16,18 @@ body {
     float: left;
     width: 20%;
     text-align: center;
-    font-family: "Merriweather"
+    font-family: "Audiowide";
+    margin-top: 20%;
 }
 
-#title {
-    font-size: 3rem;
-    margin-top: 110%;
+.title {
+    font-size: 3em;
     color: #FFF;
-/*              padding-top: 20px;
+/*  padding-top: 20px;
     padding-bottom: 20px;
     padding-left: -30px;
     padding-right: -30px;
-    border: 1px solid #FFF;*/
+    border: 1px solid #FFF;  */
 }
 
 #play {
