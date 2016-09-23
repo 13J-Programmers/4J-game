@@ -16,6 +16,7 @@ class Player extends game.MonoBehavior {
     this.moveSteps = 0;
     // accelaration
     this.defaultAccelaration = 5; // per frame
+    this.maxSpeed = 8;
     this.runningTime = 0;
 
     // flags
@@ -28,8 +29,8 @@ class Player extends game.MonoBehavior {
 
     // move forward
     this.runningTime++;
-    let accelaration = this._calcAccelaration(this.runningTime);
-    //console.log(accelaration);
+    let accelaration = (this._calcAccelaration(this.runningTime) <= this.maxSpeed) ? this._calcAccelaration(this.runningTime) : this.maxSpeed;
+    // console.log(accelaration);
     this.gameScene.camera.position.z -= accelaration;
   }
 
