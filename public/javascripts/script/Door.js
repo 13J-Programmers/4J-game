@@ -3,33 +3,35 @@
 const loader = new THREE.TextureLoader();
 
 // put a door
-const oneDoor = function (threejsObjects) {
+const oneDoor = function (threejsObjects, onlyDoor) {
   let geometry, material;
   // door
   geometry = new THREE.BoxGeometry(50, 100, 0);
   material = new THREE.MeshBasicMaterial({ map: this.texture1 });
   threejsObjects.door = new THREE.Mesh(geometry, material);
   threejsObjects.root.add(threejsObjects.door);
-  // wall
-  geometry = new THREE.BoxGeometry(300, 100, 0);
-  material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
-  threejsObjects.wall = {};
-  threejsObjects.wall.left = new THREE.Mesh(geometry, material);
-  threejsObjects.wall.left.position.x -= 175;
-  threejsObjects.root.add(threejsObjects.wall.left);
-  threejsObjects.wall.right = new THREE.Mesh(geometry, material);
-  threejsObjects.wall.right.position.x += 175;
-  threejsObjects.root.add(threejsObjects.wall.right);
-  geometry = new THREE.BoxGeometry(800, 200, 0);
-  threejsObjects.wall.top = new THREE.Mesh(geometry, material);
-  threejsObjects.wall.top.position.y += 149;
-  threejsObjects.root.add(threejsObjects.wall.top);
+  if (!onlyDoor) {
+    // wall
+    geometry = new THREE.BoxGeometry(300, 100, 0);
+    material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+    threejsObjects.wall = {};
+    threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+    threejsObjects.wall.left.position.x -= 175;
+    threejsObjects.root.add(threejsObjects.wall.left);
+    threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+    threejsObjects.wall.right.position.x += 175;
+    threejsObjects.root.add(threejsObjects.wall.right);
+    geometry = new THREE.BoxGeometry(800, 200, 0);
+    threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+    threejsObjects.wall.top.position.y += 149;
+    threejsObjects.root.add(threejsObjects.wall.top);
+  }
 
   return threejsObjects;
 };
 
 // put two door
-const twoDoor = function (threejsObjects) {
+const twoDoor = function (threejsObjects, onlyDoor) {
   let geometry, material;
   // door
   geometry = new THREE.BoxGeometry(50, 100, 0);
@@ -42,20 +44,22 @@ const twoDoor = function (threejsObjects) {
   threejsObjects.door[1] = new THREE.Mesh(geometry, material);
   threejsObjects.door[1].position.x += 25;
   threejsObjects.root.add(threejsObjects.door[1]);
-  // wall
-  geometry = new THREE.BoxGeometry(300, 100, 0);
-  material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
-  threejsObjects.wall = {};
-  threejsObjects.wall.left = new THREE.Mesh(geometry, material);
-  threejsObjects.wall.left.position.x -= 200;
-  threejsObjects.root.add(threejsObjects.wall.left);
-  threejsObjects.wall.right = new THREE.Mesh(geometry, material);
-  threejsObjects.wall.right.position.x += 200;
-  threejsObjects.root.add(threejsObjects.wall.right);
-  geometry = new THREE.BoxGeometry(800, 200, 0);
-  threejsObjects.wall.top = new THREE.Mesh(geometry, material);
-  threejsObjects.wall.top.position.y += 149;
-  threejsObjects.root.add(threejsObjects.wall.top);
+  if (!onlyDoor) {
+    // wall
+    geometry = new THREE.BoxGeometry(300, 100, 0);
+    material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+    threejsObjects.wall = {};
+    threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+    threejsObjects.wall.left.position.x -= 200;
+    threejsObjects.root.add(threejsObjects.wall.left);
+    threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+    threejsObjects.wall.right.position.x += 200;
+    threejsObjects.root.add(threejsObjects.wall.right);
+    geometry = new THREE.BoxGeometry(800, 200, 0);
+    threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+    threejsObjects.wall.top.position.y += 149;
+    threejsObjects.root.add(threejsObjects.wall.top);
+  }
 
   return threejsObjects;
 };
@@ -190,7 +194,7 @@ const doors = {
     texture4: loader.load("/images/game/doors/door8-4.png"),
     texture5: loader.load("/images/game/doors/door8-5.png"),
     texture6: loader.load("/images/game/doors/door8-6.png"),
-    addDoorAndWallMesh: function (threejsObjects) {
+    addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
       //   left
@@ -222,20 +226,22 @@ const doors = {
       threejsObjects.door[3].position.x -= 20;
       threejsObjects.door[4].add(threejsObjects.door[3]);
 
-      // wall
-      geometry = new THREE.BoxGeometry(300, 100, 0);
-      material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
-      threejsObjects.wall = {};
-      threejsObjects.wall.left = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.left.position.x -= 210;
-      threejsObjects.root.add(threejsObjects.wall.left);
-      threejsObjects.wall.right = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.right.position.x += 210;
-      threejsObjects.root.add(threejsObjects.wall.right);
-      geometry = new THREE.BoxGeometry(800, 200, 0);
-      threejsObjects.wall.top = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.top.position.y += 149;
-      threejsObjects.root.add(threejsObjects.wall.top);
+      if (!onlyDoor) {
+        // wall
+        geometry = new THREE.BoxGeometry(300, 100, 0);
+        material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+        threejsObjects.wall = {};
+        threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.left.position.x -= 210;
+        threejsObjects.root.add(threejsObjects.wall.left);
+        threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.right.position.x += 210;
+        threejsObjects.root.add(threejsObjects.wall.right);
+        geometry = new THREE.BoxGeometry(800, 200, 0);
+        threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.top.position.y += 149;
+        threejsObjects.root.add(threejsObjects.wall.top);
+      }
 
       return threejsObjects;
     },
@@ -269,7 +275,7 @@ const doors = {
     texture3: loader.load("/images/game/doors/door9-2.png"),
     texture4: loader.load("/images/game/doors/door9-2right.png"),
     texture5: loader.load("/images/game/doors/door9top.png"),
-    addDoorAndWallMesh: function (threejsObjects) {
+    addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
       geometry = new THREE.BoxGeometry(50, 100, 0);
@@ -282,40 +288,43 @@ const doors = {
       threejsObjects.door[1] = new THREE.Mesh(geometry, material);
       threejsObjects.door[1].position.x += 25;
       threejsObjects.root.add(threejsObjects.door[1]);
-      // wall
-      geometry = new THREE.BoxGeometry(300, 100, 0);
-      material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
-      threejsObjects.wall = {};
-      threejsObjects.wall.left = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.left.position.x -= 210;
-      threejsObjects.root.add(threejsObjects.wall.left);
-      threejsObjects.wall.right = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.right.position.x += 210;
-      threejsObjects.root.add(threejsObjects.wall.right);
-      geometry = new THREE.BoxGeometry(800, 200, 0);
-      threejsObjects.wall.top = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.top.position.y += 149;
-      threejsObjects.root.add(threejsObjects.wall.top);
-      // wall texture
-      geometry = new THREE.BoxGeometry(20, 120, 0);
-      material = new THREE.MeshBasicMaterial({ map: this.texture1 });
-      threejsObjects.wall.leftTexture = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.leftTexture.position.x -= 60;
-      threejsObjects.wall.leftTexture.position.y += 10;
-      threejsObjects.wall.leftTexture.position.z += 1;
-      threejsObjects.root.add(threejsObjects.wall.leftTexture);
-      material = new THREE.MeshBasicMaterial({ map: this.texture4 });
-      threejsObjects.wall.rightTexture = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.rightTexture.position.x += 60;
-      threejsObjects.wall.rightTexture.position.y += 10;
-      threejsObjects.wall.rightTexture.position.z += 1;
-      threejsObjects.root.add(threejsObjects.wall.rightTexture);
-      geometry = new THREE.BoxGeometry(100, 20, 0);
-      material = new THREE.MeshBasicMaterial({ map: this.texture5 });
-      threejsObjects.wall.topTexture = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.topTexture.position.y += 60;
-      threejsObjects.wall.topTexture.position.z += 1;
-      threejsObjects.root.add(threejsObjects.wall.topTexture);
+
+      if (!onlyDoor) {
+        // wall
+        geometry = new THREE.BoxGeometry(300, 100, 0);
+        material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+        threejsObjects.wall = {};
+        threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.left.position.x -= 210;
+        threejsObjects.root.add(threejsObjects.wall.left);
+        threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.right.position.x += 210;
+        threejsObjects.root.add(threejsObjects.wall.right);
+        geometry = new THREE.BoxGeometry(800, 200, 0);
+        threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.top.position.y += 149;
+        threejsObjects.root.add(threejsObjects.wall.top);
+        // wall texture
+        geometry = new THREE.BoxGeometry(20, 120, 0);
+        material = new THREE.MeshBasicMaterial({ map: this.texture1 });
+        threejsObjects.wall.leftTexture = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.leftTexture.position.x -= 60;
+        threejsObjects.wall.leftTexture.position.y += 10;
+        threejsObjects.wall.leftTexture.position.z += 1;
+        threejsObjects.root.add(threejsObjects.wall.leftTexture);
+        material = new THREE.MeshBasicMaterial({ map: this.texture4 });
+        threejsObjects.wall.rightTexture = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.rightTexture.position.x += 60;
+        threejsObjects.wall.rightTexture.position.y += 10;
+        threejsObjects.wall.rightTexture.position.z += 1;
+        threejsObjects.root.add(threejsObjects.wall.rightTexture);
+        geometry = new THREE.BoxGeometry(100, 20, 0);
+        material = new THREE.MeshBasicMaterial({ map: this.texture5 });
+        threejsObjects.wall.topTexture = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.topTexture.position.y += 60;
+        threejsObjects.wall.topTexture.position.z += 1;
+        threejsObjects.root.add(threejsObjects.wall.topTexture);
+      }
 
       return threejsObjects;
     },
@@ -335,7 +344,7 @@ const doors = {
     texture2: loader.load("/images/game/doors/door10-1.png"),
     texture3: loader.load("/images/game/doors/door10-2.png"),
     texture4: loader.load("/images/game/doors/door10-2right.png"),
-    addDoorAndWallMesh: function (threejsObjects) {
+    addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
       geometry = new THREE.BoxGeometry(50, 100, 0);
@@ -348,32 +357,34 @@ const doors = {
       threejsObjects.door[1] = new THREE.Mesh(geometry, material);
       threejsObjects.door[1].position.x += 25;
       threejsObjects.root.add(threejsObjects.door[1]);
-      // wall
-      geometry = new THREE.BoxGeometry(300, 100, 0);
-      material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
-      threejsObjects.wall = {};
-      threejsObjects.wall.left = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.left.position.x -= 210;
-      threejsObjects.root.add(threejsObjects.wall.left);
-      threejsObjects.wall.right = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.right.position.x += 210;
-      threejsObjects.root.add(threejsObjects.wall.right);
-      geometry = new THREE.BoxGeometry(800, 200, 0);
-      threejsObjects.wall.top = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.top.position.y += 149;
-      threejsObjects.root.add(threejsObjects.wall.top);
-      // wall texture
-      geometry = new THREE.BoxGeometry(20, 100, 0);
-      material = new THREE.MeshBasicMaterial({ map: this.texture1 });
-      threejsObjects.wall.leftTexture = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.leftTexture.position.x -= 60;
-      threejsObjects.wall.leftTexture.position.z += 1;
-      threejsObjects.root.add(threejsObjects.wall.leftTexture);
-      material = new THREE.MeshBasicMaterial({ map: this.texture4 });
-      threejsObjects.wall.rightTexture = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.rightTexture.position.x += 60;
-      threejsObjects.wall.rightTexture.position.z += 1;
-      threejsObjects.root.add(threejsObjects.wall.rightTexture);
+      if (!onlyDoor) {
+        // wall
+        geometry = new THREE.BoxGeometry(300, 100, 0);
+        material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+        threejsObjects.wall = {};
+        threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.left.position.x -= 210;
+        threejsObjects.root.add(threejsObjects.wall.left);
+        threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.right.position.x += 210;
+        threejsObjects.root.add(threejsObjects.wall.right);
+        geometry = new THREE.BoxGeometry(800, 200, 0);
+        threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.top.position.y += 149;
+        threejsObjects.root.add(threejsObjects.wall.top);
+        // wall texture
+        geometry = new THREE.BoxGeometry(20, 100, 0);
+        material = new THREE.MeshBasicMaterial({ map: this.texture1 });
+        threejsObjects.wall.leftTexture = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.leftTexture.position.x -= 60;
+        threejsObjects.wall.leftTexture.position.z += 1;
+        threejsObjects.root.add(threejsObjects.wall.leftTexture);
+        material = new THREE.MeshBasicMaterial({ map: this.texture4 });
+        threejsObjects.wall.rightTexture = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.rightTexture.position.x += 60;
+        threejsObjects.wall.rightTexture.position.z += 1;
+        threejsObjects.root.add(threejsObjects.wall.rightTexture);
+      }
 
       return threejsObjects;
     },
@@ -410,7 +421,7 @@ const doors = {
   door12: {
     texture1: loader.load("/images/game/doors/door12.png"),
     texture2: loader.load("/images/game/doors/door12wheel.png"),
-    addDoorAndWallMesh: function (threejsObjects) {
+    addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
       geometry = new THREE.BoxGeometry(50, 100, 0);
@@ -423,20 +434,22 @@ const doors = {
       threejsObjects.door.wheel = new THREE.Mesh(geometry, material);
       threejsObjects.door.wheel.position.z += 1;
       threejsObjects.door.add(threejsObjects.door.wheel);
-      // wall
-      geometry = new THREE.BoxGeometry(300, 100, 0);
-      material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
-      threejsObjects.wall = {};
-      threejsObjects.wall.left = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.left.position.x -= 175;
-      threejsObjects.root.add(threejsObjects.wall.left);
-      threejsObjects.wall.right = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.right.position.x += 175;
-      threejsObjects.root.add(threejsObjects.wall.right);
-      geometry = new THREE.BoxGeometry(800, 200, 0);
-      threejsObjects.wall.top = new THREE.Mesh(geometry, material);
-      threejsObjects.wall.top.position.y += 149;
-      threejsObjects.root.add(threejsObjects.wall.top);
+      if (!onlyDoor) {
+        // wall
+        geometry = new THREE.BoxGeometry(300, 100, 0);
+        material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
+        threejsObjects.wall = {};
+        threejsObjects.wall.left = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.left.position.x -= 175;
+        threejsObjects.root.add(threejsObjects.wall.left);
+        threejsObjects.wall.right = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.right.position.x += 175;
+        threejsObjects.root.add(threejsObjects.wall.right);
+        geometry = new THREE.BoxGeometry(800, 200, 0);
+        threejsObjects.wall.top = new THREE.Mesh(geometry, material);
+        threejsObjects.wall.top.position.y += 149;
+        threejsObjects.root.add(threejsObjects.wall.top);
+      }
 
       return threejsObjects;
     },
@@ -458,8 +471,8 @@ const doors = {
   door13: {
     texture1: loader.load("/images/game/doors/door13-1.png"),
     texture2: loader.load("/images/game/doors/door13-2.png"),
-    addDoorAndWallMesh: function (threejsObjects) {
-      threejsObjects = twoDoor.bind(this)(threejsObjects);
+    addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
+      threejsObjects = twoDoor.bind(this)(threejsObjects, onlyDoor);
       // render switch
       let geometry, material;
       // switch box
@@ -517,6 +530,7 @@ class Door extends game.MonoBehavior {
 
     // flags
     this.isOpening = false;
+    this.isOpened = false;
 
     // door type (1-13)
     this.type = args.type;
@@ -524,6 +538,12 @@ class Door extends game.MonoBehavior {
 
     // door position
     this.position = args.position || new THREE.Vector3(0, 0, 0);
+
+    // scale
+    this.scale = args.scale || 1;
+
+    // render only door
+    this.onlyDoor = args.onlyDoor || false;
   }
 
   start() {
@@ -537,10 +557,11 @@ class Door extends game.MonoBehavior {
     // root object
     this.objects.root = new THREE.Object3D();
     this.objects.root.position.set(...this.position.toArray());
+    this.objects.root.scale.set(this.scale, this.scale, this.scale);
     this.gameScene.scene.add(this.objects.root);
 
     // render door and walls
-    this.objects = this.door.addDoorAndWallMesh(this.objects);
+    this.objects = this.door.addDoorAndWallMesh(this.objects, this.onlyDoor);
   }
 
   update() {
@@ -555,6 +576,7 @@ class Door extends game.MonoBehavior {
   openSesame(method) {
     // Whether the opening method of the door is correct or not.
     if (this.door.openSesame(method)) {
+      this.isOpened = true;
       this.isOpening = true;
       return true;
     }

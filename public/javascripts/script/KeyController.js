@@ -13,7 +13,7 @@ class KeyController {
     // code to check it's keycode
     // document.addEventListener("keydown" , function (e) { console.log(e.keyCode); });
 
-    document.addEventListener("keydown" , function (e) {
+    this.eventListener = function (e) {
       var keyCode = e.keyCode;
       var method;
 
@@ -30,10 +30,12 @@ class KeyController {
       if (method) {
         callback.call(null, method);
       }
-    });
+    }
+
+    document.addEventListener("keydown", this.eventListener);
   }
 
   static disable() {
-    // TODO
+    document.removeEventListener("keydown", this.eventListener);
   }
 }
