@@ -27,6 +27,14 @@ block header
   script(src='/javascripts/script/Time.js')
 
 block content
-  div#titlePane
+  div#titlePane.hidden
     p ruNNing AWay
-  script(src='/javascripts/main.js')
+  // script(src='/javascripts/main.js')
+  div#result
+    h1 Result
+    p
+      span You opened
+      &nbsp;
+      span#doorNum
+      &nbsp;
+      span doors
