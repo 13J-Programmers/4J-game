@@ -43,6 +43,9 @@ fieldGenerator.generateDoor();
 // set OrbitControls
 // new game.OrbitControls().setOn(gameScene);
 
+// set time limit
+let timer = new game.Time().setOn(gameScene);
+
 // init mainProcess
 const mainProcess = new game.Game();
 mainProcess.set(gameScene);
