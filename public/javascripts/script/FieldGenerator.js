@@ -14,7 +14,7 @@ class FieldGenerator extends game.MonoBehavior {
     this.objects = {};
 
     this.doors = [];
-    this.maxDoorNum = 25;
+    this.maxDoorNum = 1000;
     this.doorCount = 0;
     this.stepCount = 0;
   }
