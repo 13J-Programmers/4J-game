@@ -42,4 +42,12 @@ class StartScene extends game.MonoBehavior {
   update() {
     //
   }
+
+  showTitle() {
+    $('titlePane').show();
+  }
+
+  hideTitle() {
+    $('titlePane').hide();
+  }
 }
