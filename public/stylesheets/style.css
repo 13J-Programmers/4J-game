@@ -22,7 +22,7 @@ canvas {
   height: 100%;
 }
 
-.titlePane {
+#titlePane {
   background-color: #231f20;
   color: #FFF;
   font-family: Montserrat;

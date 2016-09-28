@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
 
+@font-face {
+    font-family: 'Shlop';
+    src: url(../fonts/shlop.ttf);
+}
+
 body {
     background-color: #000;
     font: 16px/20px "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
@@ -16,12 +21,12 @@ body {
     float: left;
     width: 20%;
     text-align: center;
-    font-family: "Audiowide";
+    font-family: "Shlop";
     margin-top: 20%;
 }
 
 .title {
-    font-size: 3em;
+    font-size: 3.5em;
     color: #FFF;
 /*  padding-top: 20px;
     padding-bottom: 20px;
