@@ -16,7 +16,13 @@ class ResultScene extends game.MonoBehavior {
     //
   }
 
-  showResult() {
-    //
+  showResult(args) {
+    var score = args.score || 0;
+    $('#doorNum').text(score);
+    $('#result').show(1000);
+
+    setTimeout(function () {
+      location.reload();
+    }, 7 * 1000); // wait 7sec and reload
   }
 }
