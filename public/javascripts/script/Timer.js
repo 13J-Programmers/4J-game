@@ -1,8 +1,8 @@
 
 window.game = window.game || {}
-window.game.Time =
+window.game.Timer =
 
-class Time extends game.MonoBehavior {
+class Timer extends game.MonoBehavior {
   constructor() {
     super();
     this.gameScene = {};
