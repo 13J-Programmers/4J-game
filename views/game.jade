@@ -35,14 +35,18 @@ block content
       &nbsp;
       span.colored AW
       span ay
+    p.jp すべてのドアを開けたらゲームスタート！30秒間タイミングよくドアを開けて、より遠くへ
 
   div#result.hidden
-    h1 Result
-    p
-      span You opened
-      &nbsp;
-      span#doorNum
-      &nbsp;
-      span doors
+    div#resultContents
+      h1 - Game Finished -
+      h2 Result
+      p
+        span You opened
+        &nbsp;
+        span#doorNum
+        &nbsp;
+        span doors
+      // p タイトルにもどります
           
   script(src='/javascripts/main.js')
