@@ -53,7 +53,13 @@ fieldGenerator.generateDoor();
 // new game.OrbitControls().setOn(gameScene);
 
 // set time limit
-let timer = new game.Time().setOn(gameScene);
+let timer = new game.Timer();
+// on timer-start => wait 30 sec => emit timer-finish
+document.addEventListener('timer-start', function () {
+  timer.limit(30).start(function () {
+    document.dispatchEvent(new Event('timer-finish'));
+  });
+});
 
 // init mainProcess
 const mainProcess = new game.Game();
@@ -63,10 +69,13 @@ mainProcess.start();
 // game controller
 // emit game-start event when tutorial has done
 document.addEventListener('game-start', function () {
-  console.log("done tutorial!!");
+  // (player) done tutorial
 
   game.KeyController.disable();
   game.LeapController.disable();
+
+  // (player) start game
+  var isStartGame = false;
 
   game.KeyController.enable(detectUserInput);
   game.LeapController.enable(detectUserInput);
@@ -74,6 +83,12 @@ document.addEventListener('game-start', function () {
   // this function is invoked when controllers detect user inputs.
   function detectUserInput(method) {
     // argument +method+ -- type String is expected
+
+    if (!isStartGame) {
+      isStartGame = true;
+      // start timer
+      document.dispatchEvent(new Event('timer-start'));
+    }
 
     // Prevent from opening a door far from here.
     if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return;
@@ -85,6 +100,16 @@ document.addEventListener('game-start', function () {
   }
 });
 
+// (player) game finish
+function gameFinish() {
+  game.KeyController.disable();
+  game.LeapController.disable();
+  console.log("game finish!!");
+}
+document.addEventListener('timer-finish', gameFinish);
+
+
+// set bgm audio
 var audioListener = new THREE.AudioListener();
 camera.add(audioListener);
 var sound = new THREE.Audio(audioListener);
