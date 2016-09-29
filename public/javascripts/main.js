@@ -66,6 +66,8 @@ const mainProcess = new game.Game();
 mainProcess.set(gameScene);
 mainProcess.start();
 
+// init score
+game.score = 0;
 // game controller
 // emit game-start event when tutorial has done
 document.addEventListener('game-start', function () {
@@ -94,17 +96,22 @@ document.addEventListener('game-start', function () {
     if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return;
 
     if (fieldGenerator.openDoor(method)) {
+      game.score += 1;
       player.moveForward();
       fieldGenerator.generateDoor();
     }
   }
 });
 
+// set a result scene
+let resultScene = new game.ResultScene().setOn(gameScene);
+
 // (player) game finish
 function gameFinish() {
   game.KeyController.disable();
   game.LeapController.disable();
   console.log("game finish!!");
+  resultScene.showResult({ score: game.score });
 }
 document.addEventListener('timer-finish', gameFinish);
 
