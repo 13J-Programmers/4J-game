@@ -139,7 +139,7 @@ const doors = {
     },
     openMotion: function (door) {
       // slide right
-      if (door[0].position.x >= 75) return false;
+      if (door[0].position.x <= -75) return false;
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
