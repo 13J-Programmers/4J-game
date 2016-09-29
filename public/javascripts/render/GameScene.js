@@ -21,18 +21,18 @@ class GameScene {
 
         let geometry, material;
 
-        // load
+        // road
         geometry = new THREE.PlaneGeometry(50, 10000);
         material = new THREE.MeshPhongMaterial({
             color: 0x333333,
             side: THREE.DoubleSide,
         });
-        this.objects.load = new THREE.Mesh(geometry, material);
-        this.objects.load.position.z = -5000 + 100;
-        this.objects.load.position.y = -50;
-        this.objects.load.position.y += 1;
-        this.objects.load.rotation.x = Math.PI / 2;
-        this.scene.add(this.objects.load);
+        this.objects.road = new THREE.Mesh(geometry, material);
+        this.objects.road.position.z = -5000 + 100;
+        this.objects.road.position.y = -50;
+        this.objects.road.position.y += 1;
+        this.objects.road.rotation.x = Math.PI / 2;
+        this.scene.add(this.objects.road);
         // ground
         geometry = new THREE.PlaneGeometry(400, 10000);
         material = new THREE.MeshPhongMaterial({
