@@ -123,15 +123,16 @@ var sound = new THREE.Audio(audioListener);
 scene.add(sound);
 var soundLoader = new THREE.AudioLoader();
 soundLoader.load(
-    '../bgm/s.mp3',
-    function (audioBuffer) {
-        sound.setBuffer(audioBuffer);
-        sound.play();
-    },
-    function (xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    function (xhr) {
-        console.log('An error happened');
-    }
+  '../bgm/s.mp3',
+  function (audioBuffer) {
+    sound.setBuffer(audioBuffer);
+    sound.setLoop(true);
+    sound.play();
+  },
+  function (xhr) {
+    //console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+  },
+  function (xhr) {
+    console.log('An error happened');
+  }
 );
