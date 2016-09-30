@@ -86,7 +86,6 @@ document.addEventListener('game-start', function () {
   game.LeapController.disable();
 
   // (player) start game
-  var isStartGame = false;
 
   game.KeyController.enable(detectUserInput);
   game.LeapController.enable(detectUserInput);
@@ -95,22 +94,24 @@ document.addEventListener('game-start', function () {
   function detectUserInput(method) {
     // argument +method+ -- type String is expected
 
-    if (!isStartGame) {
-      isStartGame = true;
-      // start timer
-      document.dispatchEvent(new Event('timer-start'));
-    }
-
     // Prevent from opening a door far from here.
     if (player.position.distanceTo(fieldGenerator.getDoor().position) > 500) return;
 
     if (fieldGenerator.openDoor(method)) {
+      startTimer();
       game.score += 1;
       player.moveForward();
       fieldGenerator.generateDoor();
     }
   }
 });
+
+function startTimer() {
+  if (startTimer.invoked) return;
+  startTimer.invoked = true;
+  // emit once
+  document.dispatchEvent(new Event('timer-start'));
+}
 
 // set a result scene
 let resultScene = new game.ResultScene().setOn(gameScene);
