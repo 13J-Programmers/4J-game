@@ -11,13 +11,14 @@ class StartScene extends game.MonoBehavior {
     this.objects = {};
 
     this.doors = {};
+    this.isSlideDown = false;
   }
 
   start() {
     let geometry, material;
 
     // put start scene background
-    geometry = new THREE.BoxGeometry(500, 200, 0);
+    geometry = new THREE.BoxGeometry(100, 30, 0);
     material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
     this.objects.root = new THREE.Mesh(geometry, material);
     this.objects.root.position.z += 99;
@@ -25,7 +26,19 @@ class StartScene extends game.MonoBehavior {
   }
 
   update() {
-    //
+    if (!this.isSlideDown) return false;
+
+    // slide down
+    this.objects.root.position.y -= 1;
+    for (var door in this.doors) {
+      if (this.doors.hasOwnProperty(door)) {
+        this.doors[door].objects.root.position.y -= 1;
+      }
+    }
+
+    if (this.objects.root.position.y < -300) {
+      this.isSlideDown = false;
+    }
   }
 
   showDoors() {
@@ -116,15 +129,13 @@ class StartScene extends game.MonoBehavior {
   }
 
   hideTitle() {
-    $('#titlePane').hide();
+    $('#titlePane').animate({ top: '-100%' }, 2000).promise()
+      .done(function () {
+        $('#titlePane').hide();
+      })
   }
 
   hideTutorial() {
-    this.objects.root.visible = false;
-    for (var door in this.doors) {
-      if (this.doors.hasOwnProperty(door)) {
-        this.doors[door].objects.root.visible = false;
-      }
-    }
+    this.isSlideDown = true;
   }
 }
