@@ -37,6 +37,11 @@ block content
       span ay
     p.jp すべてのドアを開けたらゲームスタート！30秒間タイミングよくドアを開けて、より遠くへ
 
+  div#timer.hidden
+    p
+      span#remainingTime
+      span sec
+
   div#result.hidden
     div#resultContents
       h1 - Game Finished -
@@ -48,5 +53,5 @@ block content
         &nbsp;
         span doors
       // p タイトルにもどります
-          
+
   script(src='/javascripts/main.js')
