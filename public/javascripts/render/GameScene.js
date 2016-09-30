@@ -22,7 +22,7 @@ class GameScene {
         let geometry, material;
 
         // road
-        geometry = new THREE.PlaneGeometry(50, 10000);
+        geometry = new THREE.PlaneGeometry(50, 50000);
         material = new THREE.MeshPhongMaterial({
             color: 0x333333,
             side: THREE.DoubleSide,
@@ -34,7 +34,7 @@ class GameScene {
         this.objects.road.rotation.x = Math.PI / 2;
         this.scene.add(this.objects.road);
         // ground
-        geometry = new THREE.PlaneGeometry(400, 10000);
+        geometry = new THREE.PlaneGeometry(400, 50000);
         material = new THREE.MeshPhongMaterial({
             color: 0x231f20,
             side: THREE.DoubleSide,
@@ -44,5 +44,16 @@ class GameScene {
         this.objects.ground.position.y = -50;
         this.objects.ground.rotation.x = Math.PI / 2;
         this.scene.add(this.objects.ground);
+        // tunnel
+        geometry = new THREE.CylinderGeometry(90,90,50000,0);
+        material =  new THREE.MeshPhongMaterial( {
+            color: 0x231f20,
+            side: THREE.DoubleSide,
+        } );
+        this.objects.tunnel = new THREE.Mesh(geometry, material);
+        this.objects.tunnel.position.z = -5000 + 150;
+        // this.objects.ground.position.y = -50;
+        this.objects.tunnel.rotation.x = Math.PI / 2;
+        this.scene.add(this.objects.tunnel);
     }
 }
