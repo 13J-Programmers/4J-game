@@ -37,9 +37,9 @@ class FieldGenerator extends game.MonoBehavior {
 
     const distanceBetweenDoors = window.game.settings['dist-between-doors'];
     this.doors[this.doorCount] = new game.Door({
-        // type: this._cycle([1,2,3,4,5,6,7,8,9,10,11,12,13]), //this._getRandomInt(1, 13),
-        type: this._getRandomInt(1, 13),
-        position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * this.doorCount))
+      // type: this._cycle([1,2,3,4,5,6,7,8,9,10,11,12,13]),
+      type: this._getRandomInt(1, 13),
+      position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * this.doorCount))
     });
     this.doors[this.doorCount].setOn(this.gameScene);
     this.doorCount++;

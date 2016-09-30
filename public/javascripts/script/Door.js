@@ -154,7 +154,7 @@ const doors = {
     },
     openMotion: function (door) {
       // rotate to back
-      if (door[0].rotation.y >= Math.PI / 2) return false;
+      if (door[0].rotation.y <= -Math.PI / 2) return false;
       // left
       door[0].position.x -= 1.5;
       door[0].position.z += 1.0;
