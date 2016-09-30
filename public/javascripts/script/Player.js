@@ -15,8 +15,8 @@ class Player extends game.MonoBehavior {
     // steps count
     this.moveSteps = 0;
     // accelaration
-    this.defaultAccelaration = 5; // per frame
-    this.maxSpeed = 8;
+    this.defaultAccelaration = 3; // per frame
+    this.maxSpeed = 10;
     this.runningTime = 0;
 
     // flags
