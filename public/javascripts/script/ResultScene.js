@@ -19,7 +19,9 @@ class ResultScene extends game.MonoBehavior {
   showResult(args) {
     var score = args.score || 0;
     $('#doorNum').text(score);
-    $('#result').show(1000);
+    $('#result').css('top', '-100%');
+    $('#result').show();
+    $('#result').animate({'top': '0'}, 2000);
 
     setTimeout(function () {
       location.reload();
