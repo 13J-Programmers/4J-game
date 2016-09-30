@@ -96,6 +96,7 @@ class StartScene extends game.MonoBehavior {
       setTimeout(function () {
         this.hideTitle();
         this.hideTutorial();
+        timer.showTimer();
         document.dispatchEvent(new Event('game-start'));
       }.bind(this), 800);
     }
