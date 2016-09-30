@@ -4,7 +4,7 @@ window.game.LeapController =
 
 class LeapController {
   constructor() {
-    //
+    this.controller;
   }
 
   static enable(callback) {
@@ -21,7 +21,7 @@ class LeapController {
       return (rightHand.palmPosition[0] > 100 && rightHand.palmVelocity[0] > 200);
     }
 
-    var controller = new Leap.Controller({enableGestures: true})
+    this.controller = new Leap.Controller({enableGestures: true})
       .use('screenPosition')
       .connect()
       .on('frame', function(frame) {
@@ -49,6 +49,6 @@ class LeapController {
   }
 
   static disable() {
-    // TODO
+    this.controller.disconnect();
   }
 }
