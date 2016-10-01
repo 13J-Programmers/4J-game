@@ -46,11 +46,11 @@ class GameScene {
       this.scene.add(this.objects.ground);
       // tunnel
       geometry = new THREE.CylinderGeometry(90,90,50000,0);
-      // var colorSeed = (Math.random() * 0xFFFFFF | 0).toString(16);
+      var colorSeed = (Math.random() * 0xFFFFFF | 0).toString(16);
       material =  new THREE.MeshLambertMaterial( {
       // material =  new THREE.MeshNormalMaterial( {
-          // color: "#" + (Math.floor(Math.random() * 16777215).toString(16) + colorSeed).slice(-6),
-          color: 0x231f20,
+          color: "#" + (Math.floor(Math.random() * 16777215).toString(16) + colorSeed).slice(-6),
+          // color: 0x231f20,
           side: THREE.DoubleSide,
       } );
       this.objects.tunnel = new THREE.Mesh(geometry, material);
