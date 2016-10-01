@@ -24,8 +24,8 @@ class GameScene {
       // road
       geometry = new THREE.PlaneGeometry(50, 50000);
       material = new THREE.MeshPhongMaterial({
-          color: 0x333333,
-          side: THREE.DoubleSide,
+        color: 0x333333,
+        side: THREE.DoubleSide
       });
       this.objects.road = new THREE.Mesh(geometry, material);
       this.objects.road.position.z = -5000 + 100;
@@ -36,8 +36,8 @@ class GameScene {
       // ground
       geometry = new THREE.PlaneGeometry(400, 50000);
       material = new THREE.MeshPhongMaterial({
-          color: 0x231f20,
-          side: THREE.DoubleSide,
+        color: 0x231f20,
+        side: THREE.DoubleSide
       });
       this.objects.ground = new THREE.Mesh(geometry, material);
       this.objects.ground.position.z = -5000 + 100;
@@ -47,12 +47,12 @@ class GameScene {
       // tunnel
       geometry = new THREE.CylinderGeometry(90,90,50000,0);
       var colorSeed = (Math.random() * 0xFFFFFF | 0).toString(16);
-      material =  new THREE.MeshLambertMaterial( {
-      // material =  new THREE.MeshNormalMaterial( {
-          color: "#" + (Math.floor(Math.random() * 16777215).toString(16) + colorSeed).slice(-6),
-          // color: 0x231f20,
-          side: THREE.DoubleSide,
-      } );
+      material = new THREE.MeshLambertMaterial({
+        // material = new THREE.MeshNormalMaterial({
+        color: "#" + (Math.floor(Math.random() * 16777215).toString(16) + colorSeed).slice(-6),
+        // color: 0x231f20,
+        side: THREE.DoubleSide
+      });
       this.objects.tunnel = new THREE.Mesh(geometry, material);
       this.objects.tunnel.position.z = -5000 + 150;
       // this.objects.ground.position.y = -50;
