@@ -13,25 +13,28 @@ class LeapController {
     function doesLeftHandMoveLeft(leftHand) {
       if (!leftHand || !leftHand.valid) return false;
       if (leftHand.type !== "left") return false;
-      return (leftHand.palmPosition[0] < 0 && leftHand.palmVelocity[0] < -200);
+      return (leftHand.palmVelocity[0] < -300);
     }
     function doesRightHandMoveRight(rightHand) {
       if (!rightHand || !rightHand.valid) return false;
       if (rightHand.type !== "right") return false;
-      return (rightHand.palmPosition[0] > 0 && rightHand.palmVelocity[0] > 200);
+      return (rightHand.palmVelocity[0] > 300);
+    }
+    function doHandsMoveOutside(leftHand, rightHand) {
+      if (!leftHand || !leftHand.valid) return false;
+      if (!rightHand || !rightHand.valid) return false;
+      return (leftHand.palmVelocity[0] < -200 && rightHand.palmVelocity[0] > 200);
     }
     function doesHandMoveUp(hand) {
       if (!hand || !hand.valid) return false;
-      return (hand.palmPosition[1] > 400 && hand.palmVelocity[1] > 400);
+      return (hand.palmVelocity[1] > 500);
     }
     function doHandsTurnWheel(leftHand, rightHand) {
       if (!leftHand || !leftHand.valid) return false;
       if (!rightHand || !rightHand.valid) return false;
       return (
-        (leftHand.palmPosition[1]  > 400 && leftHand.palmVelocity[1]  > 400 &&
-         rightHand.palmPosition[1] < 400 && rightHand.palmVelocity[1] < -400) ||
-        (leftHand.palmPosition[1]  < 400 && leftHand.palmVelocity[1]  < -400 &&
-         rightHand.palmPosition[1] > 400 && rightHand.palmVelocity[1] > 400)
+        (leftHand.palmVelocity[1]  > 400 && rightHand.palmVelocity[1] < -400) ||
+        (leftHand.palmVelocity[1]  < -400 && rightHand.palmVelocity[1] > 400)
       );
     }
     function doesHandToggleSwitch(hand) {
@@ -72,7 +75,7 @@ class LeapController {
         if (doHandsTurnWheel(leftHand, rightHand)) {
           method = "turn";
         }
-        if (doesLeftHandMoveLeft(leftHand) && doesRightHandMoveRight(rightHand)) {
+        if (doHandsMoveOutside(leftHand, rightHand)) {
           method = "both-side";
         }
 
