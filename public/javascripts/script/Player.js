@@ -24,8 +24,14 @@ class Player extends game.MonoBehavior {
   }
 
   update() {
-    if (!this.isMoving) return this.runningTime = 0;
-    if (this._isReachedInNextDoor()) return this.isMoving = false;
+    if (!this.isMoving) {
+      this.runningTime = 0;
+      return;
+    }
+    if (this._isReachedInNextDoor()) {
+      this.isMoving = false;
+      return;
+    }
 
     // move forward
     this.runningTime++;
