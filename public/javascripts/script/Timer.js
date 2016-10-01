@@ -10,11 +10,10 @@ window.game.Timer =
 // });
 //
 class Timer extends game.MonoBehavior {
-  constructor(time_sec) {
+  constructor() {
     super();
     this.startTime;
     this.remainingTime;
-    // this.limit(time_sec);
   }
 
   start() {
