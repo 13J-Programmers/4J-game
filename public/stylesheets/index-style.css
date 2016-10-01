@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'Shlop';
-    src: url(../fonts/shlop.ttf);
+    src: url(../fonts/shlop.ttf) format('truetype');
 }
 
 body {
