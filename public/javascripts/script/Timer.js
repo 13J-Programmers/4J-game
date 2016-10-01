@@ -27,6 +27,12 @@ class Timer extends game.MonoBehavior {
     if (this.remainingTime < 0) {
       this.remainingTime = 0;
     }
+    if (this.remainingTime < 3) {
+      this.highlightRed();
+    }
+    else if (this.remainingTime < 5) {
+      this.highlightYellow();
+    }
     this.showRemainingTime(this.remainingTime.toFixed(1));
   }
 
@@ -47,5 +53,15 @@ class Timer extends game.MonoBehavior {
 
   showRemainingTime(time) {
     $('#remainingTime').text(time);
+  }
+
+  highlightRed() {
+    $('#timer').css("fontSize","6em");
+    $('#timer').css("color","red");
+  }
+
+  highlightYellow() {
+    $('#timer').css("fontSize","6em");
+    $('#timer').css("color","yellow");
   }
 }
