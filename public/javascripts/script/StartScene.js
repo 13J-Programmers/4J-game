@@ -18,7 +18,7 @@ class StartScene extends game.MonoBehavior {
     let geometry, material;
 
     // put start scene background
-    geometry = new THREE.BoxGeometry(100, 30, 0);
+    geometry = new THREE.BoxGeometry(100, 50, 0);
     material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
     this.objects.root = new THREE.Mesh(geometry, material);
     this.objects.root.position.z += 99;
