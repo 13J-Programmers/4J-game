@@ -8,7 +8,7 @@
 
 文化祭クラス企画展示用のゲーム
 
-- [開発中のサイト on heroku](https://n4js.herokuapp.com/)
+- [開発中のサイト on heroku](http://n4js.herokuapp.com/)
 - [開発中のサイト on gh-pages](http://13j-programmers.github.io/4J-game/public/index.html)
 - [implement game -- project](https://github.com/13J-Programmers/4J-game/projects/1)
 
