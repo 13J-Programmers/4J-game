@@ -13,12 +13,12 @@ class LeapController {
     function doesLeftHandMoveLeft(leftHand) {
       if (!leftHand || !leftHand.valid) return false;
       if (leftHand.type !== "left") return false;
-      return (leftHand.palmPosition[0] < -100 && leftHand.palmVelocity[0] < -300);
+      return (leftHand.palmPosition[0] < 0 && leftHand.palmVelocity[0] < -200);
     }
     function doesRightHandMoveRight(rightHand) {
       if (!rightHand || !rightHand.valid) return false;
       if (rightHand.type !== "right") return false;
-      return (rightHand.palmPosition[0] > 100 && rightHand.palmVelocity[0] > 300);
+      return (rightHand.palmPosition[0] > 0 && rightHand.palmVelocity[0] > 200);
     }
     function doesHandMoveUp(hand) {
       if (!hand || !hand.valid) return false;
@@ -36,7 +36,7 @@ class LeapController {
     }
     function doesHandToggleSwitch(hand) {
       if (!hand || !hand.valid) return false;
-      return (hand.palmPosition[0] < -100 && hand.palmPosition[2] < -10 && hand.palmVelocity[2] < -400);
+      return (hand.palmPosition[0] < -10 && hand.palmPosition[2] < -10 && hand.palmVelocity[2] < -300);
     }
 
     // leap detects multiple action per one action.
@@ -66,14 +66,14 @@ class LeapController {
         if (doesHandMoveUp(hand) || doesHandMoveUp(otherHand)) {
           method = "up";
         }
-        if (doesLeftHandMoveLeft(leftHand) && doesRightHandMoveRight(rightHand)) {
-          method = "both-side";
-        }
         if (doesHandToggleSwitch(leftHand)) {
           method = "switch";
         }
         if (doHandsTurnWheel(leftHand, rightHand)) {
           method = "turn";
+        }
+        if (doesLeftHandMoveLeft(leftHand) && doesRightHandMoveRight(rightHand)) {
+          method = "both-side";
         }
 
         if (method) {
