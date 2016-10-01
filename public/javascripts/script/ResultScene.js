@@ -16,6 +16,7 @@ class ResultScene extends game.MonoBehavior {
     //
   }
 
+  // show result => wait => close screen => transition (next game)
   showResult(args) {
     var score = args.score || 0;
     $('#doorNum').text(score);
@@ -24,7 +25,10 @@ class ResultScene extends game.MonoBehavior {
     $('#result').animate({'top': '0'}, 2000);
 
     setTimeout(function () {
-      location.reload();
+      var deferred = game.ScreenTransition.closeScreen();
+      $.when(deferred.left, deferred.right).done(function () {
+        location.reload();
+      });
     }, 7 * 1000); // wait 7sec and reload
   }
 }

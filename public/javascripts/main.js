@@ -1,4 +1,15 @@
 
+// transition
+game.ScreenTransition.init();
+// open screen => enable user input
+setTimeout(function () {
+  var deferred = game.ScreenTransition.openScreen();
+  $.when(deferred.left, deferred.right).done(function () {
+    game.KeyController.enable(detectUserInput);
+    game.LeapController.enable(detectUserInput);
+  });
+}, 2000);
+
 // init scene
 const scene = new THREE.Scene();
 
@@ -43,8 +54,6 @@ let player = new game.Player().setOn(gameScene);
 // set a start scene
 let startScene = new game.StartScene().setOn(gameScene);
 startScene.showDoors();
-game.KeyController.enable(detectUserInput);
-game.LeapController.enable(detectUserInput);
 
 // this function is invoked when controllers detect user inputs.
 function detectUserInput(method) {
