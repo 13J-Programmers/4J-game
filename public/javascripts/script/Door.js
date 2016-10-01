@@ -73,7 +73,7 @@ const twoDoor = function (threejsObjects, onlyDoor) {
 // - openMotion: this function is invoked continually till return false
 const doors = {
   door1: {
-    texture1: loader.load("/images/game/doors/door1.png"),
+    texture1: loader.load("images/game/doors/door1.png"),
     addDoorAndWallMesh: oneDoor,
     openSesame: function (method) {
       return (method === "right");
@@ -88,7 +88,7 @@ const doors = {
     },
   },
   door2: {
-    texture1: loader.load("/images/game/doors/door2.png"),
+    texture1: loader.load("images/game/doors/door2.png"),
     addDoorAndWallMesh: oneDoor,
     openSesame: function (method) {
       return (method === "left");
@@ -103,7 +103,7 @@ const doors = {
     },
   },
   door3: {
-    texture1: loader.load("/images/game/doors/door3.png"),
+    texture1: loader.load("images/game/doors/door3.png"),
     addDoorAndWallMesh: oneDoor,
     openSesame: function (method) {
       return (method === "right");
@@ -116,7 +116,7 @@ const doors = {
     },
   },
   door4: {
-    texture1: loader.load("/images/game/doors/door4.png"),
+    texture1: loader.load("images/game/doors/door4.png"),
     addDoorAndWallMesh: oneDoor,
     openSesame: function (method) {
       return (method === "right");
@@ -131,8 +131,8 @@ const doors = {
     },
   },
   door5: {
-    texture1: loader.load("/images/game/doors/door5-1.png"),
-    texture2: loader.load("/images/game/doors/door5-2.png"),
+    texture1: loader.load("images/game/doors/door5-1.png"),
+    texture2: loader.load("images/game/doors/door5-2.png"),
     addDoorAndWallMesh: twoDoor,
     openSesame: function (method) {
       return (method === "both-side");
@@ -146,8 +146,8 @@ const doors = {
     },
   },
   door6: {
-    texture1: loader.load("/images/game/doors/door6-1.png"),
-    texture2: loader.load("/images/game/doors/door6-2.png"),
+    texture1: loader.load("images/game/doors/door6-1.png"),
+    texture2: loader.load("images/game/doors/door6-2.png"),
     addDoorAndWallMesh: twoDoor,
     openSesame: function (method) {
       return (method === "both-side");
@@ -167,8 +167,8 @@ const doors = {
     },
   },
   door7: {
-    texture1: loader.load("/images/game/doors/door7-1.png"),
-    texture2: loader.load("/images/game/doors/door7-2.png"),
+    texture1: loader.load("images/game/doors/door7-1.png"),
+    texture2: loader.load("images/game/doors/door7-2.png"),
     addDoorAndWallMesh: twoDoor,
     openSesame: function (method) {
       return (method === "both-side");
@@ -188,12 +188,12 @@ const doors = {
     },
   },
   door8: {
-    texture1: loader.load("/images/game/doors/door8-1.png"),
-    texture2: loader.load("/images/game/doors/door8-2.png"),
-    texture3: loader.load("/images/game/doors/door8-3.png"),
-    texture4: loader.load("/images/game/doors/door8-4.png"),
-    texture5: loader.load("/images/game/doors/door8-5.png"),
-    texture6: loader.load("/images/game/doors/door8-6.png"),
+    texture1: loader.load("images/game/doors/door8-1.png"),
+    texture2: loader.load("images/game/doors/door8-2.png"),
+    texture3: loader.load("images/game/doors/door8-3.png"),
+    texture4: loader.load("images/game/doors/door8-4.png"),
+    texture5: loader.load("images/game/doors/door8-5.png"),
+    texture6: loader.load("images/game/doors/door8-6.png"),
     addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
@@ -270,11 +270,11 @@ const doors = {
     },
   },
   door9: {
-    texture1: loader.load("/images/game/doors/door9-1left.png"),
-    texture2: loader.load("/images/game/doors/door9-1.png"),
-    texture3: loader.load("/images/game/doors/door9-2.png"),
-    texture4: loader.load("/images/game/doors/door9-2right.png"),
-    texture5: loader.load("/images/game/doors/door9top.png"),
+    texture1: loader.load("images/game/doors/door9-1left.png"),
+    texture2: loader.load("images/game/doors/door9-1.png"),
+    texture3: loader.load("images/game/doors/door9-2.png"),
+    texture4: loader.load("images/game/doors/door9-2right.png"),
+    texture5: loader.load("images/game/doors/door9top.png"),
     addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
@@ -340,10 +340,10 @@ const doors = {
     },
   },
   door10: {
-    texture1: loader.load("/images/game/doors/door10-1left.png"),
-    texture2: loader.load("/images/game/doors/door10-1.png"),
-    texture3: loader.load("/images/game/doors/door10-2.png"),
-    texture4: loader.load("/images/game/doors/door10-2right.png"),
+    texture1: loader.load("images/game/doors/door10-1left.png"),
+    texture2: loader.load("images/game/doors/door10-1.png"),
+    texture3: loader.load("images/game/doors/door10-2.png"),
+    texture4: loader.load("images/game/doors/door10-2right.png"),
     addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
@@ -406,7 +406,7 @@ const doors = {
     },
   },
   door11: {
-    texture1: loader.load("/images/game/doors/door11.png"),
+    texture1: loader.load("images/game/doors/door11.png"),
     addDoorAndWallMesh: oneDoor,
     openSesame: function (method) {
       return (method === "up");
@@ -419,8 +419,8 @@ const doors = {
     },
   },
   door12: {
-    texture1: loader.load("/images/game/doors/door12.png"),
-    texture2: loader.load("/images/game/doors/door12wheel.png"),
+    texture1: loader.load("images/game/doors/door12.png"),
+    texture2: loader.load("images/game/doors/door12wheel.png"),
     addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       let geometry, material;
       // door
@@ -469,8 +469,8 @@ const doors = {
     },
   },
   door13: {
-    texture1: loader.load("/images/game/doors/door13-1.png"),
-    texture2: loader.load("/images/game/doors/door13-2.png"),
+    texture1: loader.load("images/game/doors/door13-1.png"),
+    texture2: loader.load("images/game/doors/door13-2.png"),
     addDoorAndWallMesh: function (threejsObjects, onlyDoor) {
       threejsObjects = twoDoor.bind(this)(threejsObjects, onlyDoor);
       // render switch

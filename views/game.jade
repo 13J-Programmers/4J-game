@@ -1,30 +1,30 @@
 extends layout
 
 block header
-  script(src='/javascripts/game-settings.js')
+  script(src='javascripts/game-settings.js')
 
-  script(src='/javascripts/lib/jquery-2.2.0.min.js')
-  script(src='/javascripts/lib/three.min.js')
-  script(src='/javascripts/lib/OrbitControls.js')
-  script(src='/javascripts/lib/underscore-min.js')
-  script(src="/javascripts/lib/leap-0.6.3.min.js")
-  script(src="/javascripts/lib/leap-plugins-0.1.11.min.js")
+  script(src='javascripts/lib/jquery-2.2.0.min.js')
+  script(src='javascripts/lib/three.min.js')
+  script(src='javascripts/lib/OrbitControls.js')
+  script(src='javascripts/lib/underscore-min.js')
+  script(src='javascripts/lib/leap-0.6.3.min.js')
+  script(src='javascripts/lib/leap-plugins-0.1.11.min.js')
 
-  script(src='/javascripts/render/GameScene.js')
+  script(src='javascripts/render/GameScene.js')
 
-  script(src='/javascripts/script/EventEmitter.js')
-  script(src='/javascripts/script/Game.js')
-  script(src='/javascripts/script/MonoBehavior.js')
-  script(src='/javascripts/script/Player.js')
-  script(src='/javascripts/script/OrbitControls.js')
-  script(src='/javascripts/script/SampleClass.js')
-  script(src='/javascripts/script/Door.js')
-  script(src='/javascripts/script/FieldGenerator.js')
-  script(src='/javascripts/script/StartScene.js')
-  script(src='/javascripts/script/ResultScene.js')
-  script(src='/javascripts/script/KeyController.js')
-  script(src='/javascripts/script/LeapController.js')
-  script(src='/javascripts/script/Timer.js')
+  script(src='javascripts/script/EventEmitter.js')
+  script(src='javascripts/script/Game.js')
+  script(src='javascripts/script/MonoBehavior.js')
+  script(src='javascripts/script/Player.js')
+  script(src='javascripts/script/OrbitControls.js')
+  script(src='javascripts/script/SampleClass.js')
+  script(src='javascripts/script/Door.js')
+  script(src='javascripts/script/FieldGenerator.js')
+  script(src='javascripts/script/StartScene.js')
+  script(src='javascripts/script/ResultScene.js')
+  script(src='javascripts/script/KeyController.js')
+  script(src='javascripts/script/LeapController.js')
+  script(src='javascripts/script/Timer.js')
 
 block content
   div#titlePane
@@ -32,7 +32,7 @@ block content
       span ru
       span.colored NN
       span ing
-      &nbsp;
+      | &nbsp;
       span.colored AW
       span ay
     p.jp すべてのドアを開けたらゲームスタート！30秒間タイミングよくドアを開けて、より遠くへ
@@ -48,10 +48,10 @@ block content
       h2 Result
       p
         span You opened
-        &nbsp;
+        | &nbsp;
         span#doorNum
-        &nbsp;
+        | &nbsp;
         span doors
       // p タイトルにもどります
 
-  script(src='/javascripts/main.js')
+  script(src='javascripts/main.js')
