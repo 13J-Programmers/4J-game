@@ -18,7 +18,7 @@
 
 // object to test whether or not it is a function
 const _isFunction = (obj) => {
-  return typeof obj == 'function';
+  return typeof obj === 'function';
 };
 
 class EventEmitter {
