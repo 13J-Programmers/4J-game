@@ -1,14 +1,15 @@
 
 // transition
 game.ScreenTransition.init();
-// open screen => enable user input
+// show screen => wait => open screen => enable user input
+var waitTime = 2000; // 2sec
 setTimeout(function () {
   var deferred = game.ScreenTransition.openScreen();
   $.when(deferred.left, deferred.right).done(function () {
     game.KeyController.enable(detectUserInput);
     game.LeapController.enable(detectUserInput);
   });
-}, 2000);
+}, waitTime);
 
 // init scene
 const scene = new THREE.Scene();
