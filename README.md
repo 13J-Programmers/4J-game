@@ -1,4 +1,4 @@
-# 4J-game
+# ruNNing AWay
 
 [![Circle CI](https://circleci.com/gh/13J-Programmers/4J-game/tree/master.svg?style=shield)](https://circleci.com/gh/13J-Programmers/4J-game/tree/master)
 [![Code Climate](https://codeclimate.com/github/13J-Programmers/4J-game/badges/gpa.svg)](https://codeclimate.com/github/13J-Programmers/4J-game)
@@ -8,16 +8,17 @@
 
 文化祭クラス企画展示用のゲーム
 
-[開発中のサイト](https://n4js.herokuapp.com/)
+- [開発中のサイト on heroku](https://n4js.herokuapp.com/)
+- [開発中のサイト on gh-pages](http://13j-programmers.github.io/4J-game/public/index.html)
+- [implement game -- project](https://github.com/13J-Programmers/4J-game/projects/1)
 
+screen shot will coming soon...
 
 Feature
 -------
 
 - ブラウザ上で遊べる
-- 対人戦ができる
 - 手で操作し、迫り来るドアを次々と開けながら時間内でどれだけ進めるか競うゲーム
-（もしくは制限時間以内に脱出できるか）
 
 Environment
 ------------
@@ -25,14 +26,14 @@ Environment
 ### Browser
 
 動作環境は、ES2015のJavaScriptはが動作するブラウザを前提にしています。
-（2015年7月15日の時点で）動作するブラウザのバージョンは次の通りです。
+（2016年7月15日の時点で）動作するブラウザのバージョンは次の通りです。
 
 - Chrome 49+
 - FireFox 45+
 - Edge 13+
 - Safari 10+ (beta)
 
-（2015年7月15日の時点で）動作しないブラウザは次の通りです。
+（2016年7月15日の時点で）動作しないブラウザは次の通りです。
 
 - IE
 - Safari
@@ -44,43 +45,6 @@ Environment
 ES2015が動くNodeのバージョンは、6.0以上です。
 
 - Node 6.0+
-
-
-TODO
------
-
-展示本体に関するTODO
-
-- [ ] ゲーム名の決定
-- [ ] 三次元モデルの作成
-    - または代替となるオブジェクトの描画の検討
-- [x] プログラムの設計
-- [ ] クラス間の連携の枠組み
-    - [x] GameクラスとMonoBehaviorクラスの作成
-    - [x] GameクラスのSingleton化
-        - `new Game()` は常に同じインスタンスを返す
-        - クロージャによって、インスタンスを保存するフィールドをプライベートにする
-    - [x] SceneのRender処理方法
-        - MonoBehaviorのstart()とupdate()は、Gameのstartイベントとupdateイベントにハンドラとして登録される
-        - MonoBehaviorは、画面描画に関する情報を持つGameSceneのインスタンスgameSceneをフィールドとして持っている
-        - GameSceneへの設定方法は `new ObjectWillBeRendered().setOn(sceneName)` にする
-        - MonoBehaviorのstart()やupdate()内に、gameSceneの内容を操作する処理を加えて画面描画に動きを加える
-    - [x] MonoBehavior#constructor()がstart()とupdate()をGameのイベントハンドラに登録する
-    - [x] MonoBehavior#destructor()は登録されたイベントハンドラを削除する
-    - [x] MonoBehavior#setOn()は、自身の描画を行うSceneを設定する
-    - [x] ゲーム初期化時に全MonoBehaviorのstart()を実行する
-    - [x] render()周りの骨組み（イベント駆動で全MonoBehaviorのupdate()メソッドをrender()から呼ぶ）
-    - [x] GameManagerの作成 -> `main.js`で行うことにした
-    - [x] FieldGeneratorの作成 -> 基本的に`main.js`で行うことにした
-    - [ ] PlayerとControllerの作成
-- [ ] プレイヤーの操作
-    - [ ] キーボードによる操作
-    - [ ] LeapMotionによる操作
-    - [ ] スマホのスワイプなどによる操作
-    - [ ] 置き換え可能な操作デバイスとそれを扱うコード
-        - アクセス元のデバイスがスマホかタブレットなら、スワイプによる操作を受け付ける
-        - LeapMotionが接続されていれば、LeapMotionの操作を受け付ける（キーボードからは基本的に受け付けない）
-        - LeapMotionの接続が切れたら、キーボード操作に切り替える
 
 
 Contributing
