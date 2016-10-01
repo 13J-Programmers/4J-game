@@ -85,7 +85,7 @@ class LeapController {
           canOpenNextDoor = false;
           setTimeout(function () { canOpenNextDoor = true; }, waitTime);
 
-          callback.call(null, method);
+          callback(method);
         }
       });
   }
