@@ -63,6 +63,10 @@ fieldGenerator.generateDoor();
 // set time limit
 let timer = new game.Timer();
 timer.limit(30);
+// show timer event
+document.addEventListener('show-timer', function () {
+  timer.showTimer();
+});
 // on timer-start => wait 30 sec => emit timer-finish
 document.addEventListener('timer-start', function () {
   timer.countdown(function () {
