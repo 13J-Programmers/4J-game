@@ -1,12 +1,12 @@
 
 @font-face {
   font-family: 'Shlop';
-  src: url(../fonts/shlop.ttf);
+  src: url(../fonts/shlop.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'lnpop';
-  src: url(../fonts/lightnovelPOP.otf);
+  src: url(../fonts/lightnovelPOP.otf) format("opentype");
 }
 
 /* THREE.js */
