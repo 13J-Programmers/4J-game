@@ -1,5 +1,5 @@
 /* THREE.js */
-@import url(https://fonts.googleapis.com/css?family=Creepster);
+@import url(https://fonts.googleapis.com/css?family=Creepster|Frijole|Salsa|Megrim|IM+Fell+DW+Pica+SC|Ravi+Prakash);
 
 @font-face {
     font-family: 'Shlop';
@@ -38,7 +38,7 @@ canvas {
 #titlePane {
   background-color: #231f20;
   color: #FFF;
-  font-family: 'Shlop';
+  font-family: "Creepster","IM Fell Great Primer SC";
   font-size: 8em;
   width: 100%;
   height: 30%;
@@ -49,13 +49,13 @@ canvas {
 }
 
 #title {
-  margin-top: 0;
+  margin-top: 0.3em;
 }
 
 .jp {
   margin-top: -12.5rem;
   font-size: 2.1rem;
-  color: green;
+  color: #669933;
   font-family: lnpop;
 }
 
