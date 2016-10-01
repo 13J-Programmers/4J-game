@@ -1,6 +1,5 @@
 
 // transition
-game.ScreenTransition.init();
 // show screen => wait => open screen
 var waitTime = 2000; // 2sec
 setTimeout(function () {
