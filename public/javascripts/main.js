@@ -1,14 +1,10 @@
 
 // transition
 game.ScreenTransition.init();
-// show screen => wait => open screen => enable user input
+// show screen => wait => open screen
 var waitTime = 2000; // 2sec
 setTimeout(function () {
-  var deferred = game.ScreenTransition.openScreen();
-  $.when(deferred.left, deferred.right).done(function () {
-    game.KeyController.enable(detectUserInput);
-    game.LeapController.enable(detectUserInput);
-  });
+  game.ScreenTransition.openScreen();
 }, waitTime);
 
 // init scene
@@ -55,6 +51,8 @@ let player = new game.Player().setOn(gameScene);
 // set a start scene
 let startScene = new game.StartScene().setOn(gameScene);
 startScene.showDoors();
+game.KeyController.enable(detectUserInput);
+game.LeapController.enable(detectUserInput);
 
 // this function is invoked when controllers detect user inputs.
 function detectUserInput(method) {
