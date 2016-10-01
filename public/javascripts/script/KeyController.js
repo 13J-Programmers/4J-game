@@ -28,7 +28,7 @@ class KeyController {
       }
 
       if (method) {
-        callback.call(null, method);
+        callback(method);
       }
     }
 

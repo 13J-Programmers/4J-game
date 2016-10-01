@@ -1,16 +1,15 @@
+
+@font-face {
+  font-family: 'Shlop';
+  src: url(../fonts/shlop.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'lnpop';
+  src: url(../fonts/lightnovelPOP.otf) format("opentype");
+}
+
 /* THREE.js */
-@import url(https://fonts.googleapis.com/css?family=Creepster|Frijole|Salsa|Megrim|IM+Fell+DW+Pica+SC|Ravi+Prakash);
-
-@font-face {
-    font-family: 'Shlop';
-    src: url(../fonts/shlop.ttf);
-}
-
-@font-face {
-    font-family: 'lnpop';
-    src: url(../fonts/lightnovelPOP.otf);
-}
-
 html {
   width: 100%;
   height: 100%;

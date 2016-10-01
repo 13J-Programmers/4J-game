@@ -85,7 +85,7 @@ const doors = {
       door.position.z -= 1.0;
       door.rotation.y -= 0.1;
       return true;
-    },
+    }
   },
   door2: {
     texture1: loader.load("images/game/doors/door2.png"),
@@ -100,7 +100,7 @@ const doors = {
       door.position.z -= 1.0;
       door.rotation.y += 0.1;
       return true;
-    },
+    }
   },
   door3: {
     texture1: loader.load("images/game/doors/door3.png"),
@@ -113,7 +113,7 @@ const doors = {
       if (door.position.x >= 50) return false;
       door.position.x += 4;
       return true;
-    },
+    }
   },
   door4: {
     texture1: loader.load("images/game/doors/door4.png"),
@@ -128,7 +128,7 @@ const doors = {
       door.position.z += 1.0;
       door.rotation.y += 0.1;
       return true;
-    },
+    }
   },
   door5: {
     texture1: loader.load("images/game/doors/door5-1.png"),
@@ -143,7 +143,7 @@ const doors = {
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
-    },
+    }
   },
   door6: {
     texture1: loader.load("images/game/doors/door6-1.png"),
@@ -164,7 +164,7 @@ const doors = {
       door[1].position.z += 1.0;
       door[1].rotation.y += 0.1;
       return true;
-    },
+    }
   },
   door7: {
     texture1: loader.load("images/game/doors/door7-1.png"),
@@ -185,7 +185,7 @@ const doors = {
       door[1].position.z -= 1.0;
       door[1].rotation.y -= 0.1;
       return true;
-    },
+    }
   },
   door8: {
     texture1: loader.load("images/game/doors/door8-1.png"),
@@ -267,7 +267,7 @@ const doors = {
       door[3].position.x += 1.0;
       door[3].rotation.y -= 0.2;
       return true;
-    },
+    }
   },
   door9: {
     texture1: loader.load("images/game/doors/door9-1left.png"),
@@ -337,7 +337,7 @@ const doors = {
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
-    },
+    }
   },
   door10: {
     texture1: loader.load("images/game/doors/door10-1left.png"),
@@ -403,7 +403,7 @@ const doors = {
       door[1].position.z -= 1.0;
       door[1].rotation.y -= 0.1;
       return true;
-    },
+    }
   },
   door11: {
     texture1: loader.load("images/game/doors/door11.png"),
@@ -416,7 +416,7 @@ const doors = {
       if (door.position.y >= 150) return false;
       door.position.y += 6;
       return true;
-    },
+    }
   },
   door12: {
     texture1: loader.load("images/game/doors/door12.png"),
@@ -466,7 +466,7 @@ const doors = {
       // rotate wheel
       door.wheel.rotation.z += 0.1;
       return true;
-    },
+    }
   },
   door13: {
     texture1: loader.load("images/game/doors/door13-1.png"),
@@ -514,8 +514,8 @@ const doors = {
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
-    },
-  },
+    }
+  }
 }
 
 

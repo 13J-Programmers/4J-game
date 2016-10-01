@@ -1,8 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Audiowide);
 
 @font-face {
     font-family: 'Shlop';
-    src: url(../fonts/shlop.ttf);
+    src: url(../fonts/shlop.ttf) format('truetype');
 }
 
 body {
@@ -38,10 +37,7 @@ body {
 #play {
     color: #FFF;
     margin-top: 60%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: -30px;
-    padding-right: -30px;
+    padding: 20px 0;
     border: 1px solid #FFF;
 }
 
