@@ -71,7 +71,7 @@ function triangleMesh() {
   geometry.vertices[1] = new THREE.Vector3(0, 20, 0);
   geometry.vertices[2] = new THREE.Vector3(-10, 0, 0);
   geometry.faces[0] = new THREE.Face3(0, 1, 2);
-  var material = new THREE.MeshBasicMaterial({ color: 0x990000 });
+  var material = new THREE.MeshBasicMaterial({ color: 0x770000 });
   return new THREE.Mesh(geometry, material);
 }
 function leftDoorArrow(threejsObjects) {
