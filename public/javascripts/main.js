@@ -8,7 +8,7 @@ var getParameterByName = function(name) {
 // show screen => wait => open screen
 var waitTime = (getParameterByName('screen-wait-time'))
   ? getParameterByName('screen-wait-time') * 1000
-  : 2000; // 2sec
+  : 1000; // 1sec
 setTimeout(function () {
   game.ScreenTransition.openScreen();
 }, waitTime);
