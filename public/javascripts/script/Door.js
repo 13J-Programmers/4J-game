@@ -75,73 +75,57 @@ function triangleMesh() {
   return new THREE.Mesh(geometry, material);
 }
 function leftDoorArrow(threejsObjects) {
-  var triangle = triangleMesh();
-  this.arrow = new THREE.Object3D();
-  this.arrow.position.x -= 40;
-  this.arrow.position.z += 1;
-  this.arrow.rotation.z += Math.PI / 2;
-  this.arrow.add(triangle);
-  threejsObjects.root.add(this.arrow);
+  threejsObjects.arrow = triangleMesh();
+  threejsObjects.arrow.position.x -= 40;
+  threejsObjects.arrow.position.z += 1;
+  threejsObjects.arrow.rotation.z += Math.PI / 2;
+  threejsObjects.root.add(threejsObjects.arrow);
 }
 function rightDoorArrow(threejsObjects) {
-  var triangle = triangleMesh();
-  this.arrow = new THREE.Object3D();
-  this.arrow.position.x += 40;
-  this.arrow.position.z += 1;
-  this.arrow.rotation.z -= Math.PI / 2;
-  this.arrow.add(triangle);
-  threejsObjects.root.add(this.arrow);
+  threejsObjects.arrow = triangleMesh();
+  threejsObjects.arrow.position.x += 40;
+  threejsObjects.arrow.position.z += 1;
+  threejsObjects.arrow.rotation.z -= Math.PI / 2;
+  threejsObjects.root.add(threejsObjects.arrow);
 }
 function bothSideDoorArrow(threejsObjects) {
-  var triangleLeft = triangleMesh();
-  this.leftArrow = new THREE.Object3D();
-  this.leftArrow.position.x -= 60;
-  this.leftArrow.position.z += 1;
-  this.leftArrow.rotation.z += Math.PI / 2;
-  this.leftArrow.add(triangleLeft);
-  threejsObjects.root.add(this.leftArrow);
+  threejsObjects.leftArrow = triangleMesh();
+  threejsObjects.leftArrow.position.x -= 60;
+  threejsObjects.leftArrow.position.z += 1;
+  threejsObjects.leftArrow.rotation.z += Math.PI / 2;
+  threejsObjects.root.add(threejsObjects.leftArrow);
 
-  var triangleRight = triangleMesh();
-  this.rightArrow = new THREE.Object3D();
-  this.rightArrow.position.x += 60;
-  this.rightArrow.position.z += 1;
-  this.rightArrow.rotation.z -= Math.PI / 2;
-  this.rightArrow.add(triangleRight);
-  threejsObjects.root.add(this.rightArrow);
+  threejsObjects.rightArrow = triangleMesh();
+  threejsObjects.rightArrow.position.x += 60;
+  threejsObjects.rightArrow.position.z += 1;
+  threejsObjects.rightArrow.rotation.z -= Math.PI / 2;
+  threejsObjects.root.add(threejsObjects.rightArrow);
 }
 function upDoorArrow(threejsObjects) {
-  var triangle = triangleMesh();
-  this.arrow = new THREE.Object3D();
-  this.arrow.position.y += 60;
-  this.arrow.position.z += 1;
-  this.arrow.add(triangle);
-  threejsObjects.root.add(this.arrow);
+  threejsObjects.arrow = triangleMesh();
+  threejsObjects.arrow.position.y += 60;
+  threejsObjects.arrow.position.z += 1;
+  threejsObjects.root.add(threejsObjects.arrow);
 }
 function leftSwitchDoorArrow(threejsObjects) {
-  var triangle = triangleMesh();
-  this.arrow = new THREE.Object3D();
-  this.arrow.position.x -= 50;
-  this.arrow.position.y -= 20;
-  this.arrow.position.z += 30;
-  this.arrow.rotation.x -= Math.PI / 2;
-  this.arrow.add(triangle);
-  threejsObjects.root.add(this.arrow);
+  threejsObjects.arrow = triangleMesh();
+  threejsObjects.arrow.position.x -= 50;
+  threejsObjects.arrow.position.y -= 20;
+  threejsObjects.arrow.position.z += 30;
+  threejsObjects.arrow.rotation.x -= Math.PI / 2;
+  threejsObjects.root.add(threejsObjects.arrow);
 }
 function wheelDoorArrow(threejsObjects) {
-  var triangleLeft = triangleMesh();
-  this.leftArrow = new THREE.Object3D();
-  this.leftArrow.position.x -= 50;
-  this.leftArrow.position.z += 1;
-  this.leftArrow.rotation.z += Math.PI;
-  this.leftArrow.add(triangleLeft);
-  threejsObjects.root.add(this.leftArrow);
+  threejsObjects.leftArrow = triangleMesh();
+  threejsObjects.leftArrow.position.x -= 50;
+  threejsObjects.leftArrow.position.z += 1;
+  threejsObjects.leftArrow.rotation.z += Math.PI;
+  threejsObjects.root.add(threejsObjects.leftArrow);
 
-  var triangleRight = triangleMesh();
-  this.rightArrow = new THREE.Object3D();
-  this.rightArrow.position.x += 50;
-  this.rightArrow.position.z += 1;
-  this.rightArrow.add(triangleRight);
-  threejsObjects.root.add(this.rightArrow);
+  threejsObjects.rightArrow = triangleMesh();
+  threejsObjects.rightArrow.position.x += 50;
+  threejsObjects.rightArrow.position.z += 1;
+  threejsObjects.root.add(threejsObjects.rightArrow);
 }
 
 // door data
