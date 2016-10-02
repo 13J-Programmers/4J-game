@@ -656,11 +656,21 @@ class Door extends game.MonoBehavior {
     if (this.door.openSesame(method)) {
       this.isOpened = true;
       this.isOpening = true;
+      this.hideArrow();
       return true;
     }
   }
 
   showArrow() {
     this.door.showArrow(this.objects);
+  }
+
+  hideArrow() {
+    if (this.objects.arrow) {
+      this.objects.arrow.visible = false;
+    } else if (this.objects.leftArrow) {
+      this.objects.leftArrow.visible = false;
+      this.objects.rightArrow.visible = false;
+    }
   }
 }
