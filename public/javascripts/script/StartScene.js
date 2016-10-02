@@ -67,6 +67,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.bothSide.showArrow();
 
     // right
     this.doors.right = new game.Door({
@@ -86,6 +87,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors['switch'].showArrow();
 
     // up
     this.doors.up = new game.Door({
@@ -95,6 +97,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.up.showArrow();
 
     // wheel
     this.doors.wheel = new game.Door({
@@ -104,6 +107,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.wheel.showArrow();
   }
 
   openDoors(method) {

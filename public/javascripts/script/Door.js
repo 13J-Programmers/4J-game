@@ -64,13 +64,14 @@ const twoDoor = function (threejsObjects, onlyDoor) {
   return threejsObjects;
 };
 
+// Arrows for guide
 function triangleMesh() {
   var geometry = new THREE.Geometry();
   geometry.vertices[0] = new THREE.Vector3(10, 0, 0);
   geometry.vertices[1] = new THREE.Vector3(0, 20, 0);
   geometry.vertices[2] = new THREE.Vector3(-10, 0, 0);
   geometry.faces[0] = new THREE.Face3(0, 1, 2);
-  var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+  var material = new THREE.MeshBasicMaterial({ color: 0x990000 });
   return new THREE.Mesh(geometry, material);
 }
 function leftDoorArrow(threejsObjects) {
@@ -90,6 +91,57 @@ function rightDoorArrow(threejsObjects) {
   this.arrow.rotation.z -= Math.PI / 2;
   this.arrow.add(triangle);
   threejsObjects.root.add(this.arrow);
+}
+function bothSideDoorArrow(threejsObjects) {
+  var triangleLeft = triangleMesh();
+  this.leftArrow = new THREE.Object3D();
+  this.leftArrow.position.x -= 60;
+  this.leftArrow.position.z += 1;
+  this.leftArrow.rotation.z += Math.PI / 2;
+  this.leftArrow.add(triangleLeft);
+  threejsObjects.root.add(this.leftArrow);
+
+  var triangleRight = triangleMesh();
+  this.rightArrow = new THREE.Object3D();
+  this.rightArrow.position.x += 60;
+  this.rightArrow.position.z += 1;
+  this.rightArrow.rotation.z -= Math.PI / 2;
+  this.rightArrow.add(triangleRight);
+  threejsObjects.root.add(this.rightArrow);
+}
+function upDoorArrow(threejsObjects) {
+  var triangle = triangleMesh();
+  this.arrow = new THREE.Object3D();
+  this.arrow.position.y += 60;
+  this.arrow.position.z += 1;
+  this.arrow.add(triangle);
+  threejsObjects.root.add(this.arrow);
+}
+function leftSwitchDoorArrow(threejsObjects) {
+  var triangle = triangleMesh();
+  this.arrow = new THREE.Object3D();
+  this.arrow.position.x -= 50;
+  this.arrow.position.y -= 20;
+  this.arrow.position.z += 30;
+  this.arrow.rotation.x -= Math.PI / 2;
+  this.arrow.add(triangle);
+  threejsObjects.root.add(this.arrow);
+}
+function wheelDoorArrow(threejsObjects) {
+  var triangleLeft = triangleMesh();
+  this.leftArrow = new THREE.Object3D();
+  this.leftArrow.position.x -= 50;
+  this.leftArrow.position.z += 1;
+  this.leftArrow.rotation.z += Math.PI;
+  this.leftArrow.add(triangleLeft);
+  threejsObjects.root.add(this.leftArrow);
+
+  var triangleRight = triangleMesh();
+  this.rightArrow = new THREE.Object3D();
+  this.rightArrow.position.x += 50;
+  this.rightArrow.position.z += 1;
+  this.rightArrow.add(triangleRight);
+  threejsObjects.root.add(this.rightArrow);
 }
 
 // door data
@@ -143,7 +195,8 @@ const doors = {
       if (door.position.x >= 50) return false;
       door.position.x += 4;
       return true;
-    }
+    },
+    showArrow: rightDoorArrow
   },
   door4: {
     texture1: loader.load("images/game/doors/door4.png"),
@@ -158,7 +211,8 @@ const doors = {
       door.position.z += 1.0;
       door.rotation.y += 0.1;
       return true;
-    }
+    },
+    showArrow: rightDoorArrow
   },
   door5: {
     texture1: loader.load("images/game/doors/door5-1.png"),
@@ -173,7 +227,8 @@ const doors = {
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
-    }
+    },
+    showArrow: bothSideDoorArrow
   },
   door6: {
     texture1: loader.load("images/game/doors/door6-1.png"),
@@ -194,7 +249,8 @@ const doors = {
       door[1].position.z += 1.0;
       door[1].rotation.y += 0.1;
       return true;
-    }
+    },
+    showArrow: bothSideDoorArrow
   },
   door7: {
     texture1: loader.load("images/game/doors/door7-1.png"),
@@ -215,7 +271,8 @@ const doors = {
       door[1].position.z -= 1.0;
       door[1].rotation.y -= 0.1;
       return true;
-    }
+    },
+    showArrow: bothSideDoorArrow
   },
   door8: {
     texture1: loader.load("images/game/doors/door8-1.png"),
@@ -297,7 +354,8 @@ const doors = {
       door[3].position.x += 1.0;
       door[3].rotation.y -= 0.2;
       return true;
-    }
+    },
+    showArrow: bothSideDoorArrow
   },
   door9: {
     texture1: loader.load("images/game/doors/door9-1left.png"),
@@ -367,7 +425,8 @@ const doors = {
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
-    }
+    },
+    showArrow: bothSideDoorArrow
   },
   door10: {
     texture1: loader.load("images/game/doors/door10-1left.png"),
@@ -433,7 +492,8 @@ const doors = {
       door[1].position.z -= 1.0;
       door[1].rotation.y -= 0.1;
       return true;
-    }
+    },
+    showArrow: bothSideDoorArrow
   },
   door11: {
     texture1: loader.load("images/game/doors/door11.png"),
@@ -446,7 +506,8 @@ const doors = {
       if (door.position.y >= 150) return false;
       door.position.y += 6;
       return true;
-    }
+    },
+    showArrow: upDoorArrow
   },
   door12: {
     texture1: loader.load("images/game/doors/door12.png"),
@@ -496,7 +557,8 @@ const doors = {
       // rotate wheel
       door.wheel.rotation.z += 0.1;
       return true;
-    }
+    },
+    showArrow: wheelDoorArrow
   },
   door13: {
     texture1: loader.load("images/game/doors/door13-1.png"),
@@ -544,7 +606,8 @@ const doors = {
       door[0].position.x -= 4;
       door[1].position.x += 4;
       return true;
-    }
+    },
+    showArrow: leftSwitchDoorArrow
   }
 }
 
