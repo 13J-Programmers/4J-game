@@ -25,11 +25,9 @@ class Timer extends game.MonoBehavior {
     this.remainingTime = (this.limit * 1000 - elapsedTime) / 1000;
     if (this.remainingTime < 0) {
       this.remainingTime = 0;
-    }
-    if (this.remainingTime < 3) {
+    } else if (this.remainingTime < 2) {
       this.highlightRed();
-    }
-    else if (this.remainingTime < 5) {
+    } else if (this.remainingTime < 5) {
       this.highlightYellow();
     }
     this.showRemainingTime(this.remainingTime.toFixed(1));
