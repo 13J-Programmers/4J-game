@@ -21,8 +21,15 @@ class StartScene extends game.MonoBehavior {
     geometry = new THREE.BoxGeometry(100, 50, 0);
     material = new THREE.MeshBasicMaterial({ color: 0x231f20 });
     this.objects.root = new THREE.Mesh(geometry, material);
-    this.objects.root.position.z += 99;
+    this.objects.root.position.z += 100;
     this.gameScene.scene.add(this.objects.root);
+
+    // put cover for up door
+    geometry = new THREE.BoxGeometry(10, 8, 0);
+    material = new THREE.MeshBasicMaterial({ color: 0x231f20 /*color: 0x999999*/ });
+    this.objects.upDoorCover = new THREE.Mesh(geometry, material);
+    this.objects.upDoorCover.position.z += 1.5;
+    this.objects.root.add(this.objects.upDoorCover);
   }
 
   update() {
@@ -81,7 +88,7 @@ class StartScene extends game.MonoBehavior {
     // up
     this.doors.up = new game.Door({
       type: 11,
-      position: new THREE.Vector3(0, -10, 102),
+      position: new THREE.Vector3(0, -10, 101),
       scale: 0.05,
       onlyDoor: true
     })
