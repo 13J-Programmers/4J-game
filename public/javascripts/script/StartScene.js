@@ -33,18 +33,8 @@ class StartScene extends game.MonoBehavior {
   }
 
   update() {
-    if (!this.isSlideDown) return false;
-
-    // slide down
-    this.objects.root.position.y -= 1;
-    for (var door in this.doors) {
-      if (this.doors.hasOwnProperty(door)) {
-        this.doors[door].objects.root.position.y -= 1;
-      }
-    }
-
-    if (this.objects.root.position.y < -300) {
-      this.isSlideDown = false;
+    if (this.isSlideDown) {
+      this.slideDownTutorial();
     }
   }
 
@@ -57,6 +47,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.left.showArrow();
 
     // both-side
     this.doors.bothSide = new game.Door({
@@ -66,6 +57,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.bothSide.showArrow();
 
     // right
     this.doors.right = new game.Door({
@@ -75,6 +67,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.right.showArrow();
 
     // switch
     this.doors['switch'] = new game.Door({
@@ -84,6 +77,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors['switch'].showArrow();
 
     // up
     this.doors.up = new game.Door({
@@ -93,6 +87,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.up.showArrow();
 
     // wheel
     this.doors.wheel = new game.Door({
@@ -102,6 +97,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.wheel.showArrow();
   }
 
   openDoors(method) {
@@ -144,5 +140,19 @@ class StartScene extends game.MonoBehavior {
 
   hideTutorial() {
     this.isSlideDown = true;
+  }
+
+  slideDownTutorial() {
+    // slide down
+    this.objects.root.position.y -= 1;
+    for (var door in this.doors) {
+      if (this.doors.hasOwnProperty(door)) {
+        this.doors[door].objects.root.position.y -= 1;
+      }
+    }
+
+    if (this.objects.root.position.y < -300) {
+      this.isSlideDown = false;
+    }
   }
 }
