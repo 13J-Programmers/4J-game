@@ -13,6 +13,19 @@ setTimeout(function () {
   game.ScreenTransition.openScreen();
 }, waitTime);
 
+// exit when ESC key pressed
+var exit_invoked = false;
+document.addEventListener("keydown", function (e) {
+  if (e.keyCode !== 27 /* KEY_CODE_ESC */) return false;
+  if (exit_invoked) return false;
+  exit_invoked = true;
+
+  var deferred = game.ScreenTransition.closeScreen();
+  $.when(deferred.left, deferred.right).done(function () {
+    location.reload();
+  });
+});
+
 // init scene
 const scene = new THREE.Scene();
 
