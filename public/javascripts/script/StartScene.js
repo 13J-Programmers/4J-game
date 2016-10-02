@@ -33,18 +33,8 @@ class StartScene extends game.MonoBehavior {
   }
 
   update() {
-    if (!this.isSlideDown) return false;
-
-    // slide down
-    this.objects.root.position.y -= 1;
-    for (var door in this.doors) {
-      if (this.doors.hasOwnProperty(door)) {
-        this.doors[door].objects.root.position.y -= 1;
-      }
-    }
-
-    if (this.objects.root.position.y < -300) {
-      this.isSlideDown = false;
+    if (this.isSlideDown) {
+      this.slideDownTutorial();
     }
   }
 
@@ -150,5 +140,19 @@ class StartScene extends game.MonoBehavior {
 
   hideTutorial() {
     this.isSlideDown = true;
+  }
+
+  slideDownTutorial() {
+    // slide down
+    this.objects.root.position.y -= 1;
+    for (var door in this.doors) {
+      if (this.doors.hasOwnProperty(door)) {
+        this.doors[door].objects.root.position.y -= 1;
+      }
+    }
+
+    if (this.objects.root.position.y < -300) {
+      this.isSlideDown = false;
+    }
   }
 }
