@@ -31,12 +31,12 @@ Environment
 - Chrome 49+
 - FireFox 45+
 - Edge 13+
-- Safari 10+ (beta)
+- Safari 10+
 
 （2016年7月15日の時点で）動作しないブラウザは次の通りです。
 
 - IE
-- Safari
+- Safari 9
 - Android Browser
 - iOS Safari
 
