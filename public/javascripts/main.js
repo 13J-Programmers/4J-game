@@ -77,7 +77,7 @@ if (getParameterByName('orbit') === 'true') {
 }
 
 // set time limit
-let timer = new game.Timer();
+var timer = new game.Timer();
 timer.limit(getParameterByName('play-time') || 30);
 // show timer event
 document.addEventListener('show-timer', function () {
