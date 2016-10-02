@@ -33,13 +33,13 @@ class LeapController {
       if (!leftHand || !leftHand.valid) return false;
       if (!rightHand || !rightHand.valid) return false;
       return (
-        (leftHand.palmVelocity[1]  > 400 && rightHand.palmVelocity[1] < -400) ||
-        (leftHand.palmVelocity[1]  < -400 && rightHand.palmVelocity[1] > 400)
+        (leftHand.palmVelocity[1] > 400  && rightHand.palmVelocity[1] < -400) ||
+        (leftHand.palmVelocity[1] < -400 && rightHand.palmVelocity[1] > 400)
       );
     }
     function doesHandToggleSwitch(hand) {
       if (!hand || !hand.valid) return false;
-      return (hand.palmPosition[0] < -10 && hand.palmPosition[2] < -10 && hand.palmVelocity[2] < -300);
+      return (hand.palmPosition[0] < 0 && hand.palmPosition[2] < 0 && hand.palmVelocity[2] < -300);
     }
 
     // leap detects multiple action per one action.
