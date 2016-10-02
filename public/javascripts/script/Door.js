@@ -64,6 +64,34 @@ const twoDoor = function (threejsObjects, onlyDoor) {
   return threejsObjects;
 };
 
+function triangleMesh() {
+  var geometry = new THREE.Geometry();
+  geometry.vertices[0] = new THREE.Vector3(10, 0, 0);
+  geometry.vertices[1] = new THREE.Vector3(0, 20, 0);
+  geometry.vertices[2] = new THREE.Vector3(-10, 0, 0);
+  geometry.faces[0] = new THREE.Face3(0, 1, 2);
+  var material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+  return new THREE.Mesh(geometry, material);
+}
+function leftDoorArrow(threejsObjects) {
+  var triangle = triangleMesh();
+  this.arrow = new THREE.Object3D();
+  this.arrow.position.x -= 40;
+  this.arrow.position.z += 1;
+  this.arrow.rotation.z += Math.PI / 2;
+  this.arrow.add(triangle);
+  threejsObjects.root.add(this.arrow);
+}
+function rightDoorArrow(threejsObjects) {
+  var triangle = triangleMesh();
+  this.arrow = new THREE.Object3D();
+  this.arrow.position.x += 40;
+  this.arrow.position.z += 1;
+  this.arrow.rotation.z -= Math.PI / 2;
+  this.arrow.add(triangle);
+  threejsObjects.root.add(this.arrow);
+}
+
 // door data
 //
 // each key was indexed by incrementally
@@ -85,7 +113,8 @@ const doors = {
       door.position.z -= 1.0;
       door.rotation.y -= 0.1;
       return true;
-    }
+    },
+    showArrow: rightDoorArrow
   },
   door2: {
     texture1: loader.load("images/game/doors/door2.png"),
@@ -100,7 +129,8 @@ const doors = {
       door.position.z -= 1.0;
       door.rotation.y += 0.1;
       return true;
-    }
+    },
+    showArrow: leftDoorArrow
   },
   door3: {
     texture1: loader.load("images/game/doors/door3.png"),
@@ -527,6 +557,7 @@ class Door extends game.MonoBehavior {
     super();
     this.gameScene = {};
     this.objects = {};
+    this.objects.root = new THREE.Object3D();
 
     // flags
     this.isOpening = false;
@@ -555,7 +586,7 @@ class Door extends game.MonoBehavior {
     //
 
     // root object
-    this.objects.root = new THREE.Object3D();
+    this.objects.root = this.objects.root || new THREE.Object3D();
     this.objects.root.position.set(...this.position.toArray());
     this.objects.root.scale.set(this.scale, this.scale, this.scale);
     this.gameScene.scene.add(this.objects.root);
@@ -580,5 +611,9 @@ class Door extends game.MonoBehavior {
       this.isOpening = true;
       return true;
     }
+  }
+
+  showArrow() {
+    this.door.showArrow(this.objects);
   }
 }

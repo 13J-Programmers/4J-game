@@ -57,6 +57,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.left.showArrow();
 
     // both-side
     this.doors.bothSide = new game.Door({
@@ -75,6 +76,7 @@ class StartScene extends game.MonoBehavior {
       onlyDoor: true
     })
     .setOn(this.gameScene);
+    this.doors.right.showArrow();
 
     // switch
     this.doors['switch'] = new game.Door({
