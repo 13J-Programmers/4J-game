@@ -1,7 +1,14 @@
 
+var getParameterByName = function(name) {
+  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
 // transition
 // show screen => wait => open screen
-var waitTime = 2000; // 2sec
+var waitTime = (getParameterByName('screen-wait-time'))
+  ? getParameterByName('screen-wait-time') * 1000
+  : 2000; // 2sec
 setTimeout(function () {
   game.ScreenTransition.openScreen();
 }, waitTime);
@@ -65,11 +72,13 @@ fieldGenerator.generateDoor();
 fieldGenerator.generateDoor();
 
 // set OrbitControls
-// new game.OrbitControls().setOn(gameScene);
+if (getParameterByName('orbit') === 'true') {
+  new game.OrbitControls().setOn(gameScene);
+}
 
 // set time limit
 let timer = new game.Timer();
-timer.limit(30);
+timer.limit(getParameterByName('play-time') || 30);
 // show timer event
 document.addEventListener('show-timer', function () {
   timer.showTimer();
