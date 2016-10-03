@@ -23,11 +23,11 @@ class LeapController {
     function doHandsMoveOutside(leftHand, rightHand) {
       if (!leftHand || !leftHand.valid) return false;
       if (!rightHand || !rightHand.valid) return false;
-      return (leftHand.palmVelocity[0] < -200 && rightHand.palmVelocity[0] > 200);
+      return (leftHand.palmVelocity[0] < -150 && rightHand.palmVelocity[0] > 150);
     }
     function doesHandMoveUp(hand) {
       if (!hand || !hand.valid) return false;
-      return (hand.palmVelocity[1] > 500);
+      return (hand.palmVelocity[1] > 600);
     }
     function doHandsTurnWheel(leftHand, rightHand) {
       if (!leftHand || !leftHand.valid) return false;
@@ -39,7 +39,7 @@ class LeapController {
     }
     function doesHandToggleSwitch(hand) {
       if (!hand || !hand.valid) return false;
-      return (hand.palmPosition[0] < 0 && hand.palmPosition[2] < 0 && hand.palmVelocity[2] < -300);
+      return (hand.palmPosition[0] < 100 && hand.palmVelocity[2] < -500);
     }
 
     // leap detects multiple action per one action.
