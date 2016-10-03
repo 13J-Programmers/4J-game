@@ -19,7 +19,10 @@ class ResultScene extends game.MonoBehavior {
   // show result => wait => close screen => transition (next game)
   showResult(args) {
     var score = args.score || 0;
+    var maxCombo = args.maxCombo || 0;
     $('#doorNum').text(score);
+    $('#maxCombo').text(maxCombo);
+    $('#score').text(score * maxCombo);
     $('#result').css('top', '-100%');
     $('#result').show();
     $('#result').animate({'top': '0'}, 2000);
@@ -29,6 +32,6 @@ class ResultScene extends game.MonoBehavior {
       $.when(deferred.left, deferred.right).done(function () {
         location.reload();
       });
-    }, 7 * 1000); // wait 7sec and reload
+    }, 10 * 1000); // wait 10sec and reload
   }
 }

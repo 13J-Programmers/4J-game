@@ -26,6 +26,7 @@ class Player extends game.MonoBehavior {
   update() {
     if (!this.isMoving) {
       this.runningTime = 0;
+      document.dispatchEvent(new Event('break-combo'));
       return;
     }
     if (this._isReachedInNextDoor()) {
@@ -43,6 +44,7 @@ class Player extends game.MonoBehavior {
   moveForward() {
     this.isMoving = true;
     this.moveSteps++;
+    document.dispatchEvent(new Event('continue-combo'));
   }
 
   // --- private ---

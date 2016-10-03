@@ -5,7 +5,7 @@ window.game.Timer =
 // Usage
 //
 // let timer = new game.Timer()
-// timer.limit(30).start(function () {
+// timer.limit(30).startTimer(function () {
 //     // invoked when passed 30 sec
 // });
 //

@@ -26,7 +26,6 @@ body {
   height: 100%;
   font-size: 1.6em;
   font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
-
 }
 
 canvas {
@@ -94,13 +93,24 @@ div[name=rightPane] {
 }
 
 #resultContents {
-  margin-top: 10%;
+  margin-top: 5%;
   /*margin-left: 35%;*/
 }
 
-#doorNum {
-  font-size: 4em;
+.resultNumber {
+  font-size: 3em;
   color: green;
+}
+
+#comboCounter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(35,31,32,0);
+  color: white;
+  font-size: 4em;
+  font-family: "Creepster";
+  margin-left: 2em;
 }
 
 #timer {
@@ -124,5 +134,9 @@ div[name=rightPane] {
 }
 
 .colored {
-    color: green;
+  color: green;
+}
+
+.small {
+  font-size: 80%;
 }

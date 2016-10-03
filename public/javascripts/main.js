@@ -103,6 +103,9 @@ document.addEventListener('timer-start', function () {
   });
 });
 
+// set combo counter
+var comboCounter = new game.ComboCounter();
+
 // init mainProcess
 const mainProcess = new game.Game();
 mainProcess.set(gameScene);
@@ -154,7 +157,7 @@ function gameFinish() {
   game.KeyController.disable();
   game.LeapController.disable();
   console.log("game finish!!");
-  resultScene.showResult({ score: game.score });
+  resultScene.showResult({ score: game.score, maxCombo: game.maxCombo });
 }
 document.addEventListener('timer-finish', gameFinish);
 
