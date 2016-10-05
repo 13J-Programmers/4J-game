@@ -169,7 +169,8 @@ var sound = new THREE.Audio(audioListener);
 scene.add(sound);
 var soundLoader = new THREE.AudioLoader();
 soundLoader.load(
-  'bgm/s.mp3',
+  'bgm/track' + Math.floor(Math.random() * 11) + '.mp3',
+  // 'bgm/s.mp3',
   function (audioBuffer) {
     sound.setBuffer(audioBuffer);
     sound.setLoop(true);
