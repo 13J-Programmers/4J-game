@@ -8,8 +8,8 @@
 
 文化祭クラス企画展示用のゲーム
 
-- [開発中のサイト on heroku](http://n4js.herokuapp.com/)
-- [開発中のサイト on gh-pages](http://13j-programmers.github.io/4J-game/public/index.html)
+- [ゲームで遊ぶ on gh-pages（優先）](http://13j-programmers.github.io/4J-game/public/index.html)
+- [ゲームで遊ぶ on heroku](http://n4js.herokuapp.com/)
 - [implement game -- project](https://github.com/13J-Programmers/4J-game/projects/1)
 
 screen shot will coming soon...
@@ -54,7 +54,7 @@ Debug Option
 使い方は `/game?オプション名=値&オプション名2=値2`
 
 - `play-time`（int）: ゲームのプレイ時間。デフォルトは 30（秒）
-- `screen-wait-time`（int）: タイトルを表示させるまでの待機時間。デフォルトは 2（秒）
+- `screen-wait-time`（int）: タイトルを表示させるまでの待機時間。デフォルトは 1（秒）
 - `orbit`（boolean）：マウスによるカメラ移動・回転の許可。デフォルトは false
 
 
