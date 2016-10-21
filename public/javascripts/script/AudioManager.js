@@ -6,6 +6,8 @@ class AudioManager extends game.MonoBehavior {
         super();
         this.gameScene = {};
         this.objects = {};
+
+        this.soundLoader = new THREE.AudioLoader();
     }
 
     start() {
@@ -14,7 +16,6 @@ class AudioManager extends game.MonoBehavior {
         this.gameScene.camera.add(this.audioListener);
         this.sound = new THREE.Audio(this.audioListener);
         this.gameScene.scene.add(this.sound);
-        this.soundLoader = new THREE.AudioLoader();
     }
 
     update() {
@@ -25,11 +26,12 @@ class AudioManager extends game.MonoBehavior {
         this.soundLoader.load(
             title,
             function (audioBuffer) {
+                this.sound.buffer = null;
                 this.sound.setBuffer(audioBuffer);
                 this.sound.setLoop(isLoop);
                 this.audioListener.setMasterVolume(volume);
                 this.sound.play();
-            },
+            }.bind(this),
             function (xhr) {
                 //console.log((xhr.loaded / xhr.total * 100) + '% loaded');
             },

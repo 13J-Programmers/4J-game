@@ -78,6 +78,9 @@ function detectUserInput(method) {
   startScene.openDoors(method);
 }
 
+// set SE
+// let se = new game.AudioManager().setOn(gameScene);
+
 // set BGM
 // let bgm = new game.BGM().setOn(gameScene);
 let bgm = new game.AudioManager().setOn(gameScene);
