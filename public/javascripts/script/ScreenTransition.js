@@ -7,6 +7,9 @@ class ScreenTransition {
     var leftPane = $('div[name=leftPane]');
     var rightPane = $('div[name=rightPane]');
 
+    let open_door_sound = new game.AudioManager().setOn(gameScene);
+    bgm.playAudio('se/open_door.mp3', false, 2);
+
     var deferredLeft = leftPane.animate({
       left: '-100%'
     }, 2000).promise();
@@ -21,6 +24,9 @@ class ScreenTransition {
   static closeScreen() {
     var leftPane = $('div[name=leftPane]');
     var rightPane = $('div[name=rightPane]');
+
+    let close_door_sound = new game.AudioManager().setOn(gameScene);
+    bgm.playAudio('se/close_door.mp3', false, 2);
 
     var deferredLeft = leftPane.animate({
       left: 0
