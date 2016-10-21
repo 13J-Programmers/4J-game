@@ -1,5 +1,5 @@
 var camera, scene, renderer,
-particle1, particle2, particle2,
+particle1, particle2, particle3,
 light1, light2, light3, light4,
 light5, light6, light7, light8,
 object, door, knob, lamp, lamptube, loadervar, spotLight, spotLight2;
