@@ -5,15 +5,13 @@ window.game.Timer =
 // Usage
 //
 // let timer = new game.Timer()
-// timer.limit(30).startTimer(function () {
+// timer.limit(30).countdown(function () {
 //     // invoked when passed 30 sec
 // });
 //
 class Timer extends game.MonoBehavior {
   constructor() {
     super();
-    this.startTime;
-    this.remainingTime;
   }
 
   start() {
