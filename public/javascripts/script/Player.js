@@ -1,4 +1,9 @@
 
+var getParameterByName = function(name) {
+  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
 window.game = window.game || {}
 window.game.Player =
 
@@ -15,7 +20,8 @@ class Player extends game.MonoBehavior {
     // steps count
     this.moveSteps = 0;
     // accelaration
-    this.defaultAccelaration = 4; // per frame
+    this.defaultAccelaration = 4;
+    this.accelaration = getParameterByName('a') || game.settings['player-accelaration'];
     this.maxSpeed = 8;
     this.runningTime = 0;
 
@@ -50,13 +56,13 @@ class Player extends game.MonoBehavior {
   // --- private ---
 
   _isReachedInNextDoor() {
-    const distBetweenDoors  = window.game.settings['dist-between-doors'];
-    const stopPosBeforeDoor = window.game.settings['stop-pos-before-door'];
+    const distBetweenDoors  = game.settings['dist-between-doors'];
+    const stopPosBeforeDoor = game.settings['stop-pos-before-door'];
     return (this.gameScene.camera.position.z <= -(this.moveSteps * distBetweenDoors) + stopPosBeforeDoor);
   }
 
   _calcAccelaration(t) {
-    const slant = window.game.settings['player-accelaration'];
+    const slant = this.accelaration;
     return t * slant + this.defaultAccelaration;
   }
 }

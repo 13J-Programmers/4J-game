@@ -1,3 +1,9 @@
+
+var getParameterByName = function(name) {
+  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
 window.game = window.game || {}
 window.game.ResultScene =
 
@@ -9,7 +15,7 @@ class ResultScene extends game.MonoBehavior {
   }
 
   start() {
-    //
+    this.showResultTime = getParameterByName('show-result-time') || 10;
   }
 
   update() {
@@ -32,6 +38,6 @@ class ResultScene extends game.MonoBehavior {
       $.when(deferred.left, deferred.right).done(function () {
         location.reload();
       });
-    }, 10 * 1000); // wait 10sec and reload
+    }, this.showResultTime * 1000); // wait 10sec and reload
   }
 }
