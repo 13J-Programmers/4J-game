@@ -64,6 +64,12 @@ function onWindowResize() {
 // init gameScene
 const gameScene = new game.GameScene(scene, camera, renderer);
 
+// set SE
+let se = new game.SE().setOn(gameScene);
+
+// set BGM
+let bgm = new game.BGM().setOn(gameScene);
+
 // set player
 let player = new game.Player().setOn(gameScene);
 
@@ -77,13 +83,6 @@ game.LeapController.enable(detectUserInput);
 function detectUserInput(method) {
   startScene.openDoors(method);
 }
-
-// set SE
-let se = new game.SE().setOn(gameScene);
-
-// set BGM
-let bgm = new game.BGM().setOn(gameScene);
-// bgm.playAudio('../bgm/track' + Math.floor(Math.random() * 11) + '.mp3', true, 1);
 
 // set fieldGenerator
 let fieldGenerator = new game.FieldGenerator().setOn(gameScene);

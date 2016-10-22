@@ -17,10 +17,12 @@ class SE extends game.MonoBehavior {
         this.sound = new THREE.Audio(this.audioListener);
         this.gameScene.scene.add(this.sound);
 
-        // this.audioListener = new THREE.AudioListener();
-        // this.gameScene.camera.add(this.audioListener);
         this.sound2 = new THREE.Audio(this.audioListener);
         this.gameScene.scene.add(this.sound2);
+
+        this.sound3 = new THREE.Audio(this.audioListener);
+        this.gameScene.scene.add(this.sound3);
+        this.loadAudioFootsteps();
     }
 
     update() {
@@ -96,4 +98,41 @@ class SE extends game.MonoBehavior {
     //         }
     //     );
     // }
+
+    loadAudioFootsteps() {
+      var title = 'se/running_on_road.mp3';
+      var isLoop = true;
+      var volume = 2;
+
+      this.soundLoader.load(
+        title,
+        function (audioBuffer) {
+          this.sound3.buffer = null;
+          this.sound3.setBuffer(audioBuffer);
+          this.sound3.setLoop(isLoop);
+          this.audioListener.setMasterVolume(volume);
+
+        }.bind(this),
+        function (xhr) {
+          //console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        function (xhr) {
+          console.log('An error happened');
+        }
+      );
+    }
+
+    playAudioFootsteps() {
+      if (!this.sound3.isPlaying) {
+        console.log("play footsteps");
+        this.sound3.play();
+      }
+    }
+
+    pauseAudioFootsteps() {
+      if (this.sound3.isPlaying) {
+        console.log("pause footsteps");
+        this.sound3.pause();
+      }
+    }
 }
