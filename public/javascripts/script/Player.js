@@ -33,7 +33,7 @@ class Player extends game.MonoBehavior {
     if (!this.isMoving) {
       this.runningTime = 0;
       document.dispatchEvent(new Event('break-combo'));
-      se.pauseAudioFootsteps();
+      //se.pauseAudioFootsteps();
       return;
     }
     if (this._isReachedInNextDoor()) {
@@ -52,7 +52,7 @@ class Player extends game.MonoBehavior {
     this.isMoving = true;
     this.moveSteps++;
     document.dispatchEvent(new Event('continue-combo'));
-    se.playAudioFootsteps();
+    //se.playAudioFootsteps();
   }
 
   // --- private ---
