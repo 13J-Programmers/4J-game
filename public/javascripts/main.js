@@ -66,6 +66,10 @@ const gameScene = new game.GameScene(scene, camera, renderer);
 
 // set SE
 let se = new game.SE().setOn(gameScene);
+document.addEventListener('play-audio-footsteps',   function () { se.playAudioFootsteps() });
+document.addEventListener('pause-audio-footsteps',  function () { se.pauseAudioFootsteps() });
+document.addEventListener('play-audio-open-doors',  function () { se.playAudioOpenDoor() });
+document.addEventListener('play-audio-close-doors', function () { se.playAudioCloseDoor() });
 
 // set BGM
 let bgm = new game.BGM().setOn(gameScene);
