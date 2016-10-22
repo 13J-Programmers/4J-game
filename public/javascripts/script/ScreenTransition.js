@@ -7,7 +7,7 @@ class ScreenTransition {
     var leftPane = $('div[name=leftPane]');
     var rightPane = $('div[name=rightPane]');
 
-    bgm.playAudio('se/open_door.mp3', false, 2);
+    se.playAudioOpenDoor();
 
     var deferredLeft = leftPane.animate({
       left: '-100%'
@@ -24,7 +24,7 @@ class ScreenTransition {
     var leftPane = $('div[name=leftPane]');
     var rightPane = $('div[name=rightPane]');
 
-    bgm.playAudio('se/close_door.mp3', false, 2);
+    se.playAudioCloseDoor();
 
     var deferredLeft = leftPane.animate({
       left: 0
