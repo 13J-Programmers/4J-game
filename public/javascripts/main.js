@@ -78,8 +78,12 @@ function detectUserInput(method) {
   startScene.openDoors(method);
 }
 
+// set SE
+let se = new game.SE().setOn(gameScene);
+
 // set BGM
 let bgm = new game.BGM().setOn(gameScene);
+// bgm.playAudio('../bgm/track' + Math.floor(Math.random() * 11) + '.mp3', true, 1);
 
 // set fieldGenerator
 let fieldGenerator = new game.FieldGenerator().setOn(gameScene);
