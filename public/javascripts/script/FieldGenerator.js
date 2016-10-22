@@ -42,6 +42,7 @@ class FieldGenerator extends game.MonoBehavior {
       position: new THREE.Vector3(0, 0, -(distanceBetweenDoors * this.doorCount))
     });
     this.doors[this.doorCount].setOn(this.gameScene);
+    this.doors[this.doorCount].showArrow();
     this.doorCount++;
   }
 
