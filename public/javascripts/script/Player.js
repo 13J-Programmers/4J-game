@@ -1,9 +1,4 @@
 
-var getParameterByName = function(name) {
-  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
-
 window.game = window.game || {}
 window.game.Player =
 
@@ -21,7 +16,7 @@ class Player extends game.MonoBehavior {
     this.moveSteps = 0;
     // accelaration
     this.defaultAccelaration = 4;
-    this.accelaration = getParameterByName('a') || game.settings['player-accelaration'];
+    this.accelaration = utils.getParameterByName('a') || game.settings['player-accelaration'];
     this.maxSpeed = 8;
     this.runningTime = 0;
 

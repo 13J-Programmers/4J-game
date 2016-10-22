@@ -1,9 +1,4 @@
 
-var getParameterByName = function(name) {
-  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
-
 window.game = window.game || {}
 window.game.ResultScene =
 
@@ -15,7 +10,7 @@ class ResultScene extends game.MonoBehavior {
   }
 
   start() {
-    this.showResultTime = getParameterByName('show-result-time') || 10;
+    this.showResultTime = utils.getParameterByName('show-result-time') || 10;
   }
 
   update() {

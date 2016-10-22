@@ -1,13 +1,8 @@
 
-var getParameterByName = function(name) {
-  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
-
 // transition
 // show screen => wait => open screen
-var waitTime = (getParameterByName('screen-wait-time'))
-  ? getParameterByName('screen-wait-time') * 1000
+var waitTime = (utils.getParameterByName('screen-wait-time'))
+  ? utils.getParameterByName('screen-wait-time') * 1000
   : 1000; // 1sec
 setTimeout(function () {
   game.ScreenTransition.openScreen();
@@ -94,13 +89,13 @@ fieldGenerator.generateDoor();
 fieldGenerator.generateDoor();
 
 // set OrbitControls
-if (getParameterByName('orbit') === 'true') {
+if (utils.getParameterByName('orbit') === 'true') {
   new game.OrbitControls().setOn(gameScene);
 }
 
 // set time limit
 var timer = new game.Timer();
-timer.limit(getParameterByName('play-time') || 30);
+timer.limit(utils.getParameterByName('play-time') || 30);
 // show timer event
 document.addEventListener('show-timer', function () {
   timer.showTimer();
