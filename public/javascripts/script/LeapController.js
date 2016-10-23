@@ -78,7 +78,7 @@ class LeapController {
         if (doesHandMoveUp(hand) || doesHandMoveUp(otherHand)) {
           method = "up";
         }
-        if (doesHandToggleSwitch(leftHand)) {
+        if (doesHandToggleSwitch(leftHand) || doesHandToggleSwitch(rightHand)) {
           method = "switch";
         }
         if (doHandsTurnWheel(leftHand, rightHand)) {
