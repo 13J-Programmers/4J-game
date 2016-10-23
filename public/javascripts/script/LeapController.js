@@ -12,18 +12,27 @@ class LeapController {
 
     function doesLeftHandMoveLeft(leftHand) {
       if (!leftHand || !leftHand.valid) return false;
-      if (leftHand.type !== "left") return false;
-      return (leftHand.palmVelocity[0] < -300);
+      // if (leftHand.type !== "left") return false;
+      return (
+        (leftHand.palmVelocity[0] < -300) ||
+        (leftHand.palmVelocity[0] > 300)
+      );
     }
     function doesRightHandMoveRight(rightHand) {
       if (!rightHand || !rightHand.valid) return false;
-      if (rightHand.type !== "right") return false;
-      return (rightHand.palmVelocity[0] > 300);
+      // if (rightHand.type !== "right") return false;
+      return (
+        (rightHand.palmVelocity[0] > 300) ||
+        (rightHand.palmVelocity[0] < -300)
+      );
     }
     function doHandsMoveOutside(leftHand, rightHand) {
       if (!leftHand || !leftHand.valid) return false;
       if (!rightHand || !rightHand.valid) return false;
-      return (leftHand.palmVelocity[0] < -150 && rightHand.palmVelocity[0] > 150);
+      return (
+        (leftHand.palmVelocity[0] < -150 && rightHand.palmVelocity[0] > 150) ||
+        (leftHand.palmVelocity[0] > 150 && rightHand.palmVelocity[0] < -150)
+      );
     }
     function doesHandMoveUp(hand) {
       if (!hand || !hand.valid) return false;
