@@ -77,7 +77,7 @@ class SE extends game.MonoBehavior {
       audio: sound,
       file: 'se/running_on_road.mp3',
       isLoop: true,
-      volume: 1
+      volume: 0.3
     }, function successed() {
       sound.play();
     });

@@ -161,6 +161,7 @@ function gameFinish() {
   game.KeyController.disable();
   game.LeapController.disable();
   console.log("game finish!!");
+  document.dispatchEvent(new Event('pause-audio-footsteps'));
   resultScene.showResult({ score: game.score, maxCombo: game.maxCombo });
 }
 document.addEventListener('timer-finish', gameFinish);
