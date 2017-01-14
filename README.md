@@ -12,7 +12,8 @@
 - [ゲームで遊ぶ on heroku](http://n4js.herokuapp.com/)
 - [implement game -- project](https://github.com/13J-Programmers/4J-game/projects/1)
 
-screen shot will coming soon...
+![スクリーンショット1](public/images/screen1.png)
+![スクリーンショット2](public/images/screen2.png)
 
 
 Feature
